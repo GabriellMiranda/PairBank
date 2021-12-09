@@ -3,6 +3,7 @@ package com.company;
 public class Pessoa {
     private String nome, dataNascimento, cpf, rg;
     private int idade;
+    private double salario;
 
     public Pessoa(String nome,int idade, String cpf, String rg, String dataNascimento){
         this.nome = nome;

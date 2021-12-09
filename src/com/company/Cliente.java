@@ -1,23 +1,33 @@
 package com.company;
 
+import javax.swing.*;
+
 public class Cliente {
-    private Pessoa pessoa;
-    private String senha, usuario;
+    public Pessoa pessoa;
+    private String senha;
     private String Agencia, conta;
     private String dataCriacaodaConta;
     private String tipodeConta;
+    public ContaCorrente contaCorrente;
 
-    public Cliente(String agencia, String conta, String senha, String usuario, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta){
+    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta,double valor){
         this.pessoa = pessoa1;
         this.Agencia = agencia;
         this.dataCriacaodaConta = dataCriacaodaConta;
         this.tipodeConta = tipodeconta;
         this.conta = conta;
-        this.usuario = usuario;
         this.senha = senha;
-        // this.pessoa = new Pessoa();
     }
 
+    /*public void isTipoConta(String tipodeconta, double valor){
+        if ("Corrente".equals(tipodeconta)){
+            contaCorrente = new ContaCorrente();
+            contaPoupanca = new ContaPoupanca(valor);
+        }else if("Poupança".equals(tipodeconta)){
+            contaPoupanca = new ContaPoupanca(valor);
+        }
+    }
+*/
     public String getAgencia(){
         return Agencia;
     }
@@ -33,15 +43,24 @@ public class Cliente {
     public String getSenha(){
         return senha;
     }
-    public String getUsuario(){
-        return usuario;
+    public void getPessoa(){
+        this.pessoa.impressaoPessoa();
     }
+
     public void setAgencia(String agencia) {
         this.Agencia = agencia;
     }
     public void setConta(String conta){
         this.conta = conta;
     }
-
+    public void imprimeClinte(){
+         pessoa.impressaoPessoa();
+         System.out.println("Senha:"+senha);
+         System.out.println("Agencia:"+ Agencia);
+         System.out.println("Conta:"+conta);
+         System.out.println("Data Criacção da conta:"+dataCriacaodaConta);
+         System.out.println("Tipo de conta:"+tipodeConta);
+         contaCorrente.Imprimivalor();
+    }
 
 }
