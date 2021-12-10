@@ -10,7 +10,7 @@ public class Administrador {
     public void cadastroADM(){ // devem haver apenas duas contas ADM (vefiricar quanto implementar BD)
         Scanner scan = new Scanner(System.in);
         System.out.print("\nEntre com um nome de usuário:");
-        this.usuario = scan.next();
+        setUsuario(scan.next());
         System.out.print("\nSenha:");
         setSenha(scan.next());
         System.out.print("\nCPF(apenas números):");
@@ -20,6 +20,22 @@ public class Administrador {
 
     public void login(){//implementar quando houver BD
 
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     private void setCPF(String CPF){
