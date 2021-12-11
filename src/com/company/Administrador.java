@@ -54,7 +54,14 @@ public class Administrador {
     private boolean validaCPF(String CPF){
         if(CPF.length() == 11) {
             String[] aux = CPF.split("");
-            return primeiroDigitoVerificador(aux) && segundoDigitoVerificador(aux);
+            int qtd = 0;
+            String verify = aux[0];
+            for(String c:aux){
+                if(c.equals(verify)){
+                    qtd++;
+                }
+            }
+            return primeiroDigitoVerificador(aux) && segundoDigitoVerificador(aux) && qtd < 11;
         }
         else{
             return false;
@@ -67,6 +74,8 @@ public class Administrador {
             result += Integer.parseInt(CPF[i]) * (10-i);
         }
         result = (result*10)%11;
+        if(result == 10)
+            result = 0;
         return result == Integer.parseInt(CPF[9]);
     }
 
