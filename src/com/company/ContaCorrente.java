@@ -9,7 +9,7 @@ public class ContaCorrente {
     public void SacarCorrente(double valor){
         this.ValorCorrente -= valor;
     }
-    public void Imprimivalor(){
+    public void Imprimevalor(){
         System.out.println("Saldo Conta corrente:"+this.ValorCorrente);
     }
 }

@@ -17,31 +17,17 @@ public class Main {
         Cliente cliente1 = new Cliente("1458","2020","2425", "Corrente",pessoa1,"08/02/2021",51);
         Cliente cliente2 = new Cliente("1458","2020","0215", "Corrente",pessoa2,"08/02/2021",51);
         Cliente cliente3 = new Cliente("1458","2020","2021", "Corrente",pessoa3,"08/02/2021",51);
-        Cliente clientes[] = {cliente1,cliente2, cliente3};
-        Pessoa pessoa;
-        String senha, usuario;
-        String Agencia, tipoconta;
-        String dataCriacaodaConta;
-        String tipodeConta;
-        ContaCorrente contaCorrente;
-        ContaPoupanca contaPoupanca;
 
-      /*   System.out.println("Quantos clientes serão cadastrados no sistema de banco:");
-        qtd = scan.nextInt();
-       for(int i = 0;i < qtd; i++){
-            System.out.println("Digite a Agencia do cliente");
-            Agencia = scan.next();
-            System.out.println("Digite a Conta do cliente");
-            tipoconta = scan.next();
-            System.out.println("Digite o usuário do cliente:");
-            usuario = scan.next();
-            System.out.println("Digite a senha do cliente");
-            senha = scan.next();
-            System.out.println("Digite a data de criação da conta do cliente");
-            dataCriacaodaConta = scan.next();
-            System.out.println("Digite o tipo de conta:");
-            tipoconta = scan.next();
-        }*/
+        Agencia Ag = new Agencia();
+        Ag.AdicionarCliente(cliente1);
+        Ag.AdicionarCliente(cliente2);
+        Ag.AdicionarCliente(cliente3);
+        Ag.ClientesdaAgencia();
+
+
+
+       /*
+
         while (true) {
             int indice = 0;
             String Agencia1, senha1;
@@ -50,8 +36,9 @@ public class Main {
             System.out.println("Digite sua Senha:");
             senha1 = scan.next();
             for(int i = 0; i < clientes.length; i++){
-                if(clientes[i].getSenha().equals(senha1) && clientes[i].getAgencia().equals(Agencia1));
-                   indice = i;
+                if(clientes[i].getSenha().equals(senha1) && clientes[i].getAgencia().equals(Agencia1)) {
+                    indice = i;
+                }
             }
             while (true) {
                 System.out.println("1 - Depositar na conta corrente:");
@@ -63,7 +50,7 @@ public class Main {
                 int opcao;
                 opcao = scan.nextInt();
                 if (opcao == 1) {
-
+                    clientes[indice].contaCorrente.DepositarCorrente(1000);
                 } else if (opcao == 2) {
 
                 } else if (opcao == 3) {
@@ -78,6 +65,6 @@ public class Main {
                     System.out.println("Opção invalida!!");
                 }
             }
-        }
+        }*/
     }
 }

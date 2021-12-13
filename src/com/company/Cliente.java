@@ -8,7 +8,7 @@ public class Cliente {
     private String Agencia, conta;
     private String dataCriacaodaConta;
     private String tipodeConta;
-    public ContaCorrente contaCorrente;
+    public ContaCorrente contaCorrente = new ContaCorrente();
 
     public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta,double valor){
         this.pessoa = pessoa1;
@@ -44,7 +44,7 @@ public class Cliente {
         return senha;
     }
     public void getPessoa(){
-        this.pessoa.impressaoPessoa();
+        this.pessoa.ImpressaoPessoa();
     }
 
     public void setAgencia(String agencia) {
@@ -53,14 +53,14 @@ public class Cliente {
     public void setConta(String conta){
         this.conta = conta;
     }
-    public void imprimeClinte(){
-         pessoa.impressaoPessoa();
+    public void ImprimeCliente(){
+         pessoa.ImpressaoPessoa();
          System.out.println("Senha:"+senha);
          System.out.println("Agencia:"+ Agencia);
          System.out.println("Conta:"+conta);
          System.out.println("Data Criacção da conta:"+dataCriacaodaConta);
          System.out.println("Tipo de conta:"+tipodeConta);
-         contaCorrente.Imprimivalor();
+         contaCorrente.Imprimevalor();
     }
 
 }

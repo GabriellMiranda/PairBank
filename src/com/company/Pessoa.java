@@ -27,7 +27,7 @@ public class Pessoa {
     public int getIdade(){
         return this.idade;
     }
-    public void impressaoPessoa(){
+    public void ImpressaoPessoa(){
         System.out.println("Nome:"+getNome());
         System.out.println("Idade:"+getIdade());
         System.out.println("CPF:"+getCpf());
