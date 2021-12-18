@@ -25,7 +25,6 @@ public class Menu {
         Ag.AdicionarCliente(cliente1);
         Ag.AdicionarCliente(cliente2);
         Ag.AdicionarCliente(cliente3);
-        Ag.ClientesdaAgencia();
         System.out.println("--------------Menu-------------");
 
         while (op1 == true) {
@@ -71,19 +70,23 @@ public class Menu {
                             auxCliente.contaCorrente.DepositarCorrente(valor);
                             System.out.println("Deposito efetuado com sucesso!!");
                         } else if (opcao2 == 3) {
-
+                            System.out.println("Digite sua nova senha:");
+                            senha = scan.next();
+                            auxCliente.setSenha(senha);
                         } else if (opcao2 == 4) {
                             auxCliente.ImprimeCliente();
                         } else if (opcao2 == 5) {
-
+                            op2 = false;
                         } else {
                             System.out.println("Opção Incorreta!!");
                         }
                     }
                 }
             } else if (opcao == 3) {
-
+                Ag.ClientesdaAgencia();
             } else if (opcao == 4) {
+                op1 = false;
+            }else{
                 System.out.println("Opção Incorreto!!");
             }
         }
