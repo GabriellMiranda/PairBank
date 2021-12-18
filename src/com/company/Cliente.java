@@ -10,13 +10,14 @@ public class Cliente {
     private String tipodeConta;
     public ContaCorrente contaCorrente;
 
-    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta,double valor){
+    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta){
         this.pessoa = pessoa1;
         this.Agencia = agencia;
         this.dataCriacaodaConta = dataCriacaodaConta;
         this.tipodeConta = tipodeconta;
         this.conta = conta;
         this.senha = senha;
+        this.contaCorrente = new ContaCorrente();
     }
 
     /*public void isTipoConta(String tipodeconta, double valor){
