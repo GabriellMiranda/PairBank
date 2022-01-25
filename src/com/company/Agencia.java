@@ -32,13 +32,14 @@ public class Agencia {
     public void AdicionarCliente(Cliente cliente){
         this.list.add(cliente);
     }
-    public void ClientesdaAgencia(){
-        for(int i = 0; i < list.size();i++){
-            Cliente c = (Cliente) list.get(i);
-            System.out.println("-----------------------------------------------------------------\n");
-            c.imprimeClinte();
-            System.out.println("-----------------------------------------------------------------\n");
+    public String toString(){
+        String out = "";
+        for(Cliente c : this.list){
+            out += "-----------------------------------------------------------------\n";
+            out += c + "\n";
+            out += "-----------------------------------------------------------------\n";
         }
+        return out;
     }
 
 

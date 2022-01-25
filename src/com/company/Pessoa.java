@@ -41,11 +41,11 @@ public class Pessoa {
             return anoAtual - ano - 1;
         }
     }
-    public void impressaoPessoa(){
-        System.out.println("Nome:"+getNome());
-        System.out.println("Idade:"+getIdade());
-        System.out.println("CPF:"+getCpf());
-        System.out.println("RG:"+getRg());
-        System.out.println("Data de Nascimento:"+getDataNascimento());
+    public String toString(){
+        return "Nome:"+getNome()+"\n"+
+        "Idade:"+getIdade()+"\n"+
+        "CPF:"+getCpf()+"\n"+
+        "RG:"+getRg()+"\n"+
+        "Data de Nascimento:"+getDataNascimento()+"\n";
     }
 }

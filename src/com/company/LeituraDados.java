@@ -25,7 +25,7 @@ public class LeituraDados {
         }
     }
 
-    public void imprimeDados(){
-        this.AgenciaFicticia.ClientesdaAgencia();
+    public String toString(){
+        return this.AgenciaFicticia.toString();
     }
 }
