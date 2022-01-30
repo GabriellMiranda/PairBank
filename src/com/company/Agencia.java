@@ -1,6 +1,5 @@
 package com.company;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,13 +10,11 @@ public class Agencia {
     private String nome;
     private String numero;
     private String nomeGerente;
-    public Agencia(){
-        System.out.println("Digite o nome da Agencia:");
-        this.nome = scan.nextLine();
-        System.out.println("Digite o número da Agencia:");
-        this.numero = scan.nextLine();
-        System.out.println("Digite o Gerente da Agência:");
-        this.nomeGerente = scan.nextLine();
+
+    public Agencia(String nomeAgencia,String NumeroAgencia,String nomeGerente){
+        this.nome = nomeAgencia;
+        this.numero = NumeroAgencia;
+        this.nomeGerente = nomeGerente;
     }
 
     public String getNome() {
@@ -32,27 +29,17 @@ public class Agencia {
         return numero;
     }
 
-    public Cliente LoginUsuario(String CPF, String senha){
-        for(int i = 0; i < this.list.size(); i++){
-            Cliente c = (Cliente) list.get(i);
-            if(c.getSenha().equals(senha) && c.pessoa.getCpf().equals(CPF)){
-                return c;
-            }
-        }
-        return null;
-    }
-
-
     public void AdicionarCliente(Cliente cliente){
-       this.list.add(cliente);
+        this.list.add(cliente);
     }
-    public void ClientesdaAgencia(){
-        for(int i = 0; i < list.size();i++){
-            Cliente c = (Cliente) list.get(i);
-            System.out.println("-----------------------------------------------------------------\n");
-            c.ImprimeCliente();
-            System.out.println("-----------------------------------------------------------------\n");
+    public String toString(){
+        String out = "";
+        for(Cliente c : this.list){
+            out += "-----------------------------------------------------------------\n";
+            out += c + "\n";
+            out += "-----------------------------------------------------------------\n";
         }
+        return out;
     }
 
 

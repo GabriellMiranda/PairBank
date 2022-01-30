@@ -7,16 +7,41 @@ public class Cliente {
     private String senha;
     private String Agencia, conta;
     private String dataCriacaodaConta;
-    private String tipodeConta;
-    public ContaCorrente contaCorrente = new ContaCorrente();
+    public ContaCorrente contaCorrente;
+    private tipoConta TipoDeConta;
 
-    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta,double valor){
+
+    public void defineTipoConta(String nomeTipo){
+        if(nomeTipo.equals("corrente")){
+            this.TipoDeConta = tipoConta.CORRENTE;
+        }
+        else{
+            this.TipoDeConta = tipoConta.POUPANCA;
+        }
+    }
+
+    private enum tipoConta {
+        CORRENTE("corrente"),POUPANCA("poupança");
+
+        private String descricao;
+
+        tipoConta(String descricao) {
+            this.descricao = descricao;
+        }
+
+        public String toString(){
+            return this.descricao;
+        }
+    }
+
+    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta){
         this.pessoa = pessoa1;
         this.Agencia = agencia;
         this.dataCriacaodaConta = dataCriacaodaConta;
-        this.tipodeConta = tipodeconta;
+        this.defineTipoConta(tipodeconta);
         this.conta = conta;
         this.senha = senha;
+        this.contaCorrente = new ContaCorrente();
     }
 
     /*public void isTipoConta(String tipodeconta, double valor){
@@ -38,16 +63,13 @@ public class Cliente {
         return dataCriacaodaConta;
     }
     public String getTipodeConta(){
-        return tipodeConta;
+        return this.TipoDeConta.toString();
     }
     public String getSenha(){
         return senha;
     }
-    public void getPessoa(){
-        this.pessoa.ImpressaoPessoa();
-    }
-    public void setSenha(String senha){
-        this.senha = senha;
+    public Pessoa getPessoa(){
+        return this.pessoa;
     }
 
     public void setAgencia(String agencia) {
@@ -56,14 +78,12 @@ public class Cliente {
     public void setConta(String conta){
         this.conta = conta;
     }
-    public void ImprimeCliente(){
-         pessoa.ImpressaoPessoa();
-         System.out.println("Senha:"+senha);
-         System.out.println("Agencia:"+ Agencia);
-         System.out.println("Conta:"+conta);
-         System.out.println("Data Criacção da conta:"+dataCriacaodaConta);
-         System.out.println("Tipo de conta:"+tipodeConta);
-         contaCorrente.Imprimevalor();
+
+    public String toString(){
+         return pessoa +"\n"+ "Senha:"+senha +"\n" + "Agencia:"+ Agencia +"\n"+ "Conta:"+conta +"\n"+
+         "Data Criacção da conta:"+dataCriacaodaConta +"\n"+
+         "Tipo de conta:"+ this.TipoDeConta +"\n"+
+         contaCorrente;
     }
 
 }
