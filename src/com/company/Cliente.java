@@ -46,6 +46,9 @@ public class Cliente {
     public void getPessoa(){
         this.pessoa.ImpressaoPessoa();
     }
+    public void setSenha(String senha){
+        this.senha = senha;
+    }
 
     public void setAgencia(String agencia) {
         this.Agencia = agencia;
