@@ -12,13 +12,13 @@ public class ContaPoupanca {
             System.out.println("Não possível criar a conta!!");
         }
     }
-    public void DepositarPoupança(double valor){
+    public void DepositarPoupanca(double valor){
         this.valorPoupanca += valor;
     }
     public void SacarPoupanca(double valor){
         this.valorPoupanca -= valor;
     }
-    public void ExtratoPoupança(){
+    public void ExtratoPoupanca(){
         System.out.println("Valor poupanca:"+valorPoupanca);
     }
 
