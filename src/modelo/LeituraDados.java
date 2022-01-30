@@ -1,5 +1,9 @@
-package com.company;
+package modelo;
 
+
+import modelo.Agencia;
+import modelo.Cliente;
+import modelo.Pessoa;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

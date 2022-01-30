@@ -1,4 +1,4 @@
-package com.company;
+package modelo;
 
 public class ContaCorrente {
     private double ValorCorrente = 0;

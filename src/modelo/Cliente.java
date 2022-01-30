@@ -1,6 +1,4 @@
-package com.company;
-
-import javax.swing.*;
+package modelo;
 
 public class Cliente {
     public Pessoa pessoa;
