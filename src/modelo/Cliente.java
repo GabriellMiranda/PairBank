@@ -4,7 +4,7 @@ public class Cliente {
     public Pessoa pessoa;
     private String senha;
     private String Agencia, conta;
-    private String dataCriacaodaConta;
+    private Data dataCriacaodaConta;
     public ContaCorrente contaCorrente;
     private tipoConta TipoDeConta;
 
@@ -32,10 +32,10 @@ public class Cliente {
         }
     }
 
-    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta){
+    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, int diaCriacao,int mesCriacao,int anoCriacao){
         this.pessoa = pessoa1;
         this.Agencia = agencia;
-        this.dataCriacaodaConta = dataCriacaodaConta;
+        this.dataCriacaodaConta = new Data(diaCriacao,mesCriacao,anoCriacao);
         this.defineTipoConta(tipodeconta);
         this.conta = conta;
         this.senha = senha;
@@ -58,7 +58,7 @@ public class Cliente {
         return conta;
     }
     public String getDataCriacaodaConta(){
-        return dataCriacaodaConta;
+        return dataCriacaodaConta.toString();
     }
     public String getTipodeConta(){
         return this.TipoDeConta.toString();
@@ -84,4 +84,32 @@ public class Cliente {
          contaCorrente;
     }
 
+}
+
+class Data{
+    private int dia;
+    private int mes;
+    private int ano;
+
+    public Data(int dia,int mes,int ano){
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public int getDia() {
+        return this.dia;
+    }
+
+    public String toString(){
+        return Integer.toString(this.dia) + "/" + Integer.toString(this.mes) + "/" + Integer.toString(this.ano);
+    }
 }
