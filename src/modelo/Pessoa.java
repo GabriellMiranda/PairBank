@@ -42,7 +42,7 @@ public class Pessoa {
         }
     }
     public String toString(){
-        return "Nome:"+getNome()+"\n"+
+        return "\nNome:"+getNome()+"\n"+
         "Idade:"+getIdade()+"\n"+
         "CPF:"+getCpf()+"\n"+
         "RG:"+getRg()+"\n"+

@@ -19,7 +19,7 @@ public class LeituraDados {
         this.Nome_arquivo = nome_arquivo;
     }
 
-    public void read(List<Agencia> agencias) throws FileNotFoundException {
+    public void read() throws FileNotFoundException {
         Scanner scan = new Scanner(new FileReader(this.Nome_arquivo)).useDelimiter("\\n");
         String[] variaveis;
         this.AgenciaFicticia = new Agencia("Teste","2010","Gabriel");

@@ -34,6 +34,11 @@ public class Agencia {
     }
 
     public String toString(){
+        return "\nNome:"+nome +"\nnumero:"+numero+
+                "\nNome Gerente:"+nomeGerente;
+    }
+
+   /* public String toString(){
         String out = "";
         for(Cliente c : this.list){
             out += "-----------------------------------------------------------------\n";
@@ -41,7 +46,7 @@ public class Agencia {
             out += "-----------------------------------------------------------------\n";
         }
         return out;
-    }
+    }*/
 
 
 }
