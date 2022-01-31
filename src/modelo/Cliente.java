@@ -7,7 +7,7 @@ public class Cliente {
     private String dataCriacaodaConta;
     public ContaCorrente contaCorrente;
     private tipoConta TipoDeConta;
-
+    private String idAgencia; //chave estrangeira
 
     public void defineTipoConta(String nomeTipo){
         if(nomeTipo.equals("corrente")){
@@ -32,7 +32,7 @@ public class Cliente {
         }
     }
 
-    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta){
+    public Cliente(String agencia, String conta, String senha, String tipodeconta, Pessoa pessoa1, String dataCriacaodaConta, String idAgencia){
         this.pessoa = pessoa1;
         this.Agencia = agencia;
         this.dataCriacaodaConta = dataCriacaodaConta;
@@ -40,17 +40,9 @@ public class Cliente {
         this.conta = conta;
         this.senha = senha;
         this.contaCorrente = new ContaCorrente();
+        this.idAgencia = idAgencia;
     }
 
-    /*public void isTipoConta(String tipodeconta, double valor){
-        if ("Corrente".equals(tipodeconta)){
-            contaCorrente = new ContaCorrente();
-            contaPoupanca = new ContaPoupanca(valor);
-        }else if("Poupança".equals(tipodeconta)){
-            contaPoupanca = new ContaPoupanca(valor);
-        }
-    }
-*/
     public String getAgencia(){
         return Agencia;
     }

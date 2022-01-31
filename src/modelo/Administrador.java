@@ -6,6 +6,7 @@ public class Administrador {
     private String usuario;
     private String senha;
     private String CPF;
+    private String idCliente; //chave estrangeira
 
     public void cadastroADM(){ // devem haver apenas duas contas ADM (vefiricar quanto implementar BD)
         Scanner scan = new Scanner(System.in);
