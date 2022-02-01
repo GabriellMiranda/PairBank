@@ -1,5 +1,6 @@
 package visao;
 
+import modelo.BancoDeDados;
 import modelo.Cliente;
 
 import java.io.FileNotFoundException;
@@ -7,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import modelo.Agencia;
-import modelo.LeituraDados;
 import controle.controleTela;
 import visao.visaoPessoa;
 import visao.visaoCliente;
@@ -15,9 +15,9 @@ import visao.visaoCliente;
 public class visaoTela {
 
     private Scanner scan;
-    LeituraDados lerDados;
-    List<Agencia> listAgencias = new ArrayList<Agencia>();
-    List<Cliente> listClientes = new ArrayList<Cliente>();
+    BancoDeDados lerDados;
+    ArrayList<Agencia> listAgencias = new ArrayList<Agencia>();
+    ArrayList<Cliente> listClientes = new ArrayList<Cliente>();
 
     public visaoTela(){
         scan = new Scanner(System.in);
@@ -26,8 +26,8 @@ public class visaoTela {
 
     public void telaInicial() throws FileNotFoundException {
         controleTela control = new controleTela();
-        listAgencias = control.readAgencias();
-        listClientes = control.readClientes();
+        listAgencias = (ArrayList<Agencia>) control.readAgencias();
+        listClientes = (ArrayList<Cliente>) control.readClientes();
         /*System.out.println("Todas as Agencias:");
         for (Agencia listAgencia : listAgencias) {
             System.out.println(listAgencia.toString());
@@ -42,15 +42,16 @@ public class visaoTela {
         mostrarMenu();
         while(true){
             opcao1 = scan.nextInt();
-            if(opcao1 == 1){
+            if(opcao1 == 1) {
                 cadastrarCliente();
-           /* }if else(opcao1 == 2){
-                //leitura de dados
-            }if else(opcao1 == 3){
-                // fazer login
-            }if else(opcao1 == 4){
-                break;*/
-            }else{
+            }
+            else if(opcao1 == 3) {
+                this.fazeLogin();
+            }
+            else if(opcao1 == 2){
+                this.leituraArquivo();
+            }
+            else{
                 System.out.println("Opção invalidade!!\nDigite novamente:");
             }
         }
@@ -66,15 +67,30 @@ public class visaoTela {
     }
 
     public void cadastrarCliente(){
-        visaoCliente viewCliente = new visaoCliente();
-        viewCliente.cadastrarCliente();
+        visaoCliente viewCliente = new visaoCliente(this.listClientes);
+        ArrayList<Cliente> aux = viewCliente.cadastrarCliente();
+        if(aux != null){
+            this.listClientes = aux;
+            System.out.println("Cadastro efetuado com sucesso!");
+            mostrarMenu();
+        }
+        else{
+            System.out.println("Houve um erro ao efetuar o cadastro, favor tentar novamente!");
+            mostrarMenu();
+        }
     }
-    public void leituraArquivo(){
-        String nomeArquivo;
-        nomeArquivo = scan.next();
+    public void leituraArquivo() throws FileNotFoundException {
+        controleTela control = new controleTela();
+        this.listClientes = (ArrayList<Cliente>) control.readClientes();
+        this.listAgencias = (ArrayList<Agencia>) control.readAgencias();
+        System.out.println("Dados carregados com sucesso!");
+        mostrarMenu();
     }
     public void fazeLogin(){
-
+        visaoCliente viewCliente = new visaoCliente(this.listClientes);
+        Cliente cliente = viewCliente.loginCliente();
+        int opcao = viewCliente.interfaceUsuario();
+        //fazer o resto da interface Gabriel
     }
 
 

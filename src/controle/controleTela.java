@@ -31,13 +31,10 @@ public class controleTela {
         String[] variaveis;
         while (scan.hasNext()){
             variaveis = scan.next().split(" ");
-            Pessoa novaPessoa = new Pessoa(variaveis[0],variaveis[2],variaveis[3],variaveis[1]);
-            Cliente novoCliente = new Cliente(variaveis[6],variaveis[7],variaveis[5],variaveis[9],novaPessoa,variaveis[8], variaveis[9]);
+            Pessoa novaPessoa = new Pessoa(variaveis[0],variaveis[4],variaveis[5],Integer.parseInt(variaveis[1]),Integer.parseInt(variaveis[2]),Integer.parseInt(variaveis[3]));
+            Cliente novoCliente = new Cliente(variaveis[8],variaveis[9],variaveis[7],variaveis[13],novaPessoa,Integer.parseInt(variaveis[10]),Integer.parseInt(variaveis[11]),Integer.parseInt(variaveis[12]));
             listClientes.add(novoCliente);
         }
         return listClientes;
     }
-
-
-
 }

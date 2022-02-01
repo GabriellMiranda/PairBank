@@ -1,20 +1,28 @@
 package visao;
 
+import controle.controleCliente;
 import modelo.Cliente;
+import modelo.Pessoa;
+
 import java.sql.SQLOutput;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class visaoCliente {
 
     private Scanner scan;
     private Cliente cliente;
+    private controleCliente controle;
 
-    public visaoCliente(){
+    public visaoCliente(ArrayList <Cliente> listaClientes){
         scan = new Scanner(System.in);
-        //Aqui vai ser chamada a classe controle cliente
+        controle = new controleCliente(listaClientes);
     }
 
-    public void cadastrarCliente(){
+    public ArrayList <Cliente> cadastrarCliente(){
+        visaoPessoa pessoaview = new visaoPessoa();
         System.out.println("Digite a Agência:");
         String agencia = scan.next();
         System.out.println("Digite a Conta:");
@@ -22,18 +30,26 @@ public class visaoCliente {
         System.out.println("Digite senha:");
         String senha = scan.next();
         System.out.println("Digite o tipo de conta:");
-        //chama controle para fazer cadastro
-
+        String tipoConta = scan.next();
+        Pessoa nova = pessoaview.cadastrarPessoa();
+        Date dataHoraAtual = new Date();
+        String dia = new SimpleDateFormat("dd").format(dataHoraAtual);
+        String mes = new SimpleDateFormat("MM").format(dataHoraAtual);
+        String ano = new SimpleDateFormat("yyyy").format(dataHoraAtual);
+        return controle.cadastroCliente(agencia,conta,senha,tipoConta,nova,Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano));
     }
 
-    public void loginCliente(){
-        System.out.println("Digite a Agência:");
-        String agencia = scan.next();
-        System.out.println("Digite a Conta:");
-        String conta = scan.next();
+    public Cliente loginCliente(){
+        System.out.println("Digite seu CPF:");
+        String CPF = scan.next();
         System.out.println("Digite senha:");
         String senha = scan.next();
-        //chama controle para fazer login
+        this.cliente = controle.login(CPF,senha);
+        if(this.cliente == null){
+            return this.loginCliente();
+        }
+        System.out.println("Login efetuado com sucesso!");
+        return this.cliente;
     }
 
     public int interfaceUsuario(){
@@ -45,8 +61,7 @@ public class visaoCliente {
         System.out.println("5 - Pagar Boleto");
         System.out.println("6 - Sair");
         System.out.println("========================");
-        int opcao = scan.nextInt();
-        return opcao;
+        return scan.nextInt();
     }
 
 
