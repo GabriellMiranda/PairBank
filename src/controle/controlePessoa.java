@@ -10,7 +10,4 @@ public class controlePessoa {
         }
         return null;
     }
-//    public boolean login(String CPF,String senha){
-//
-//    }
 }

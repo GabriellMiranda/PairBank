@@ -39,7 +39,7 @@ public class Cliente {
         this.defineTipoConta(tipodeconta);
         this.conta = conta;
         this.senha = senha;
-        this.contaCorrente = new ContaCorrente();
+        this.contaCorrente = new ContaCorrente(0);
     }
 
     /*public void isTipoConta(String tipodeconta, double valor){
@@ -69,6 +69,7 @@ public class Cliente {
     public Pessoa getPessoa(){
         return this.pessoa;
     }
+    public String getCPFpessoa(){return this.pessoa.getCpf();}
 
     public void setAgencia(String agencia) {
         this.Agencia = agencia;

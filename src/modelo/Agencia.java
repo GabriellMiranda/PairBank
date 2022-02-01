@@ -29,9 +29,6 @@ public class Agencia {
         return numero;
     }
 
-    public void AdicionarCliente(Cliente cliente){
-        this.list.add(cliente);
-    }
     public String toString(){
         String out = "";
         for(Cliente c : this.list){
