@@ -1,11 +1,15 @@
 package com.company;
 
+
+import modelo.BancoDeDados;
+
 import java.io.FileNotFoundException;
-import visao.visaoTela;
 
 public class Main {
+
     public static void main(String[] args) throws FileNotFoundException {
-        visaoTela tela = new visaoTela();
-        tela.telaInicial();
+        BancoDeDados dados = new BancoDeDados("src\\Banco_dados_provisorio\\Clientes.txt");
+        dados.read();
+        System.out.print(dados);
     }
 }

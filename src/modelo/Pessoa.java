@@ -3,20 +3,21 @@ package modelo;
 import java.util.Calendar;
 
 public class Pessoa {
-    private String nome, dataNascimento, cpf, rg;
+    private String nome, cpf, rg;
+    private Data dataNascimento;
     private double salario;
 
-    public Pessoa(String nome, String cpf, String rg, String dataNascimento){
+    public Pessoa(String nome, String cpf, String rg, int diaNascimento,int mesNascimento,int anoNascimento){
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
-        this.dataNascimento = dataNascimento;
+        this.dataNascimento = new Data(diaNascimento,mesNascimento,anoNascimento);
     }
     public String getNome(){
         return this.nome;
     }
     public String getDataNascimento(){
-        return this.dataNascimento;
+        return this.dataNascimento.toString();
     }
     public String getCpf(){
         return this.cpf;
@@ -24,21 +25,16 @@ public class Pessoa {
     public String getRg(){
         return this.rg;
     }
-    public int getIdade(){//arrumar
+    public int getIdade(){
         Calendar cal =  Calendar.getInstance();
-        int dia,mes,ano;
-        String[] data = this.dataNascimento.split("/");
-        dia = Integer.parseInt(data[0]);
-        mes = Integer.parseInt(data[1]);
-        ano = Integer.parseInt(data[2]);
         int anoAtual = cal.get(Calendar.YEAR);
         int mesAtual = cal.get(Calendar.MONTH);
         int diaAtual = cal.get(Calendar.DAY_OF_MONTH);
-        if((mesAtual == mes && diaAtual >= dia) || mesAtual>mes){
-            return anoAtual - ano;
+        if((mesAtual == this.dataNascimento.getMes() && diaAtual >= this.dataNascimento.getDia()) || mesAtual>this.dataNascimento.getMes()){
+            return anoAtual - this.dataNascimento.getAno();
         }
         else {
-            return anoAtual - ano - 1;
+            return anoAtual - this.dataNascimento.getAno() - 1;
         }
     }
     public String toString(){

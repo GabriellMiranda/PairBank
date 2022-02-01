@@ -3,23 +3,21 @@ package modelo;
 import java.awt.*;
 
 public class ContaPoupanca {
-    private double valorPoupanca = 0;
+    private double valorPoupanca;
 
     public ContaPoupanca(double valor){
-        if( valor > 50){
-            this.valorPoupanca = valor;
-        }else {
-            System.out.println("Não possível criar a conta!!");
-        }
+        this.valorPoupanca = valor;
     }
-    public void DepositarPoupanca(double valor){
-        this.valorPoupanca += valor;
+    public double getValorPoupanca(){
+        return this.valorPoupanca;
     }
-    public void SacarPoupanca(double valor){
-        this.valorPoupanca -= valor;
+
+    public void setValorPoupanca(double valor){
+        this.valorPoupanca = valor;
     }
-    public void ExtratoPoupanca(){
-        System.out.println("Valor poupanca:"+valorPoupanca);
+
+    public String toString(){
+        return "Valor poupanca:"+Double.toString(this.valorPoupanca);
     }
 
 }

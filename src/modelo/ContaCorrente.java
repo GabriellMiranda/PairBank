@@ -1,14 +1,18 @@
 package modelo;
 
 public class ContaCorrente {
-    private double ValorCorrente = 0;
+    private double ValorCorrente;
 
-    public void DepositarCorrente(double valorCorrente){
-        this.ValorCorrente += valorCorrente;
+    public ContaCorrente(double valor){this.ValorCorrente = valor;}
+
+    public double getValorCorrente(){
+        return this.ValorCorrente;
     }
-    public void SacarCorrente(double valor){
-        this.ValorCorrente -= valor;
+
+    public void setValorCorrente(double valor){
+        this.ValorCorrente = valor;
     }
+
     public String toString(){
         return "Saldo Conta corrente:"+this.ValorCorrente;
     }
