@@ -46,6 +46,7 @@ public class visaoCliente {
         String senha = scan.next();
         this.cliente = controle.login(CPF,senha);
         if(this.cliente == null){
+            System.out.println("Senha ou CPF incorretos!!");
             return this.loginCliente();
         }
         System.out.println("Login efetuado com sucesso!");
@@ -59,8 +60,10 @@ public class visaoCliente {
         System.out.println("3 - pix");
         System.out.println("4 - Fazer emprestimo");
         System.out.println("5 - Pagar Boleto");
-        System.out.println("6 - Sair");
+        System.out.println("6 - Dados do usuario");
+        System.out.println("7 - Sair");
         System.out.println("========================");
+        System.out.print("Opcao: ");
         return scan.nextInt();
     }
 
