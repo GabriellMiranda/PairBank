@@ -21,7 +21,6 @@ public class visaoAdministrador {
         String senha = scan.next();
         System.out.println("Digite o CPF:");
         String CPF = scan.next();
-
     }
 
 }

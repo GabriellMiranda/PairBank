@@ -1,7 +1,6 @@
 package com.company;
 
 
-import modelo.BancoDeDados;
 import visao.visaoTela;
 
 import java.io.FileNotFoundException;

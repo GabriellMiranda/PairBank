@@ -1,22 +1,16 @@
 package visao;
 
-import modelo.BancoDeDados;
 import modelo.Cliente;
 
 import java.io.FileNotFoundException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import modelo.Agencia;
 import controle.controleTela;
-import visao.visaoPessoa;
-import visao.visaoCliente;
 
 public class visaoTela {
 
     private Scanner scan;
-    BancoDeDados lerDados;
     ArrayList<Agencia> listAgencias = new ArrayList<Agencia>();
     ArrayList<Cliente> listClientes = new ArrayList<Cliente>();
 
@@ -37,10 +31,10 @@ public class visaoTela {
                 cadastrarCliente();
             }
             else if(opcao1 == 2) {
-                this.fazeLogin();
+                this.leituraArquivo();
             }
             else if(opcao1 == 3){
-                this.leituraArquivo();
+                this.fazeLogin();
             }
             else if(opcao1 == 4){
                 break;
