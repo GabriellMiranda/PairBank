@@ -12,8 +12,16 @@ public class ContaPoupanca {
         return this.valorPoupanca;
     }
 
-    public void setValorPoupanca(double valor){
+   /* public void setValorPoupanca(double valor){
         this.valorPoupanca = valor;
+    }*/
+
+    public void sacar(double valor){
+        this.valorPoupanca -= valor;
+    }
+
+    public void depositar(double valor){
+        this.valorPoupanca -= valor;
     }
 
     public String toString(){

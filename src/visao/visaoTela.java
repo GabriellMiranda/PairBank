@@ -23,19 +23,21 @@ public class visaoTela {
         controleTela control = new controleTela();
         listAgencias = (ArrayList<Agencia>) control.readAgencias();
         listClientes = (ArrayList<Cliente>) control.readClientes();
-
         int opcao1;
-        mostrarMenu();
         while(true){
+            mostrarMenu();
             opcao1 = scan.nextInt();
             if(opcao1 == 1) {
                 cadastrarCliente();
             }
-            else if(opcao1 == 3) {
+            else if(opcao1 == 2) {
+                this.leituraArquivo();
+            }
+            else if(opcao1 == 3){
                 this.fazeLogin();
             }
-            else if(opcao1 == 2){
-                this.leituraArquivo();
+            else if(opcao1 == 4){
+                break;
             }
             else{
                 System.out.println("Opção invalidade!!\nDigite novamente:");
@@ -49,7 +51,7 @@ public class visaoTela {
         System.out.println("3 - Fazer login");
         System.out.println("4 - Sair");
         System.out.println("=================================");
-        System.out.print("Opcao:");
+        System.out.print("Opcao: ");
     }
 
     public void cadastrarCliente(){
@@ -58,11 +60,9 @@ public class visaoTela {
         if(aux != null){
             this.listClientes = aux;
             System.out.println("Cadastro efetuado com sucesso!");
-            mostrarMenu();
         }
         else{
             System.out.println("Houve um erro ao efetuar o cadastro, favor tentar novamente!");
-            mostrarMenu();
         }
     }
     public void leituraArquivo() throws FileNotFoundException {
@@ -70,13 +70,35 @@ public class visaoTela {
         this.listClientes = (ArrayList<Cliente>) control.readClientes();
         this.listAgencias = (ArrayList<Agencia>) control.readAgencias();
         System.out.println("Dados carregados com sucesso!");
-        mostrarMenu();
     }
     public void fazeLogin(){
+        int opcao;
+        double valor;
         visaoCliente viewCliente = new visaoCliente(this.listClientes);
         Cliente cliente = viewCliente.loginCliente();
-        int opcao = viewCliente.interfaceUsuario();
-        //fazer o resto da interface Gabriel
+        while(true) {
+            opcao = viewCliente.interfaceUsuario();
+            if(opcao == 1){
+                System.out.println("Digite o valor que voce deseja sacar:");
+                valor = scan.nextDouble();
+                cliente.contaCorrente.sacar(valor);
+            }else if(opcao == 2){
+                System.out.println("Digite o valor que voce deseja depositar");
+                valor = scan.nextDouble();
+                cliente.contaCorrente.depositar(valor);
+            }else if(opcao == 3){
+                System.out.println("falta implementar");
+            }else if(opcao == 4){
+                System.out.println("falta implementar");
+            }else if(opcao == 5) {
+                System.out.println("falta implementar");
+            }else if(opcao == 6){
+                System.out.println(cliente);
+            }else if(opcao == 7){
+                break;
+            }
+
+        }
     }
 
 
