@@ -11,10 +11,18 @@ public class controleContaPoupanca {
         return null;
     }
 
-    public void Deposito(double valor,ContaPoupanca conta){
+    public boolean Deposito(double valor,ContaPoupanca conta){
+        if(valor<0){
+            return false;
+        }
         conta.setValorPoupanca(conta.getValorPoupanca() + valor);
+        return true;
     }
-    public void Saque(double valor,ContaPoupanca conta){
+    public boolean Saque(double valor,ContaPoupanca conta){
+        if(conta.getValorPoupanca() == 0 || conta.getValorPoupanca() < valor || valor <= 0){
+            return false;
+        }
         conta.setValorPoupanca(conta.getValorPoupanca() - valor);
+        return true;
     }
 }

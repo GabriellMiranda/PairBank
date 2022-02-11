@@ -12,13 +12,7 @@ public class ContaCorrente {
    public void setValorCorrente(double valor){
         this.ValorCorrente = valor;
     }
-    public void sacar(double valor){
-        this.ValorCorrente -= valor;
-    }
 
-    public void depositar(double valor){
-        this.ValorCorrente += valor;
-    }
     public String toString(){
         return "Saldo Conta corrente:"+this.ValorCorrente;
     }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.Agencia;
 import controle.controleTela;
+import controle.controleContaPoupanca;
+import controle.controleContaCorrente;
 
 public class visaoTela {
 
@@ -76,16 +78,27 @@ public class visaoTela {
         double valor;
         visaoCliente viewCliente = new visaoCliente(this.listClientes);
         Cliente cliente = viewCliente.loginCliente();
+        controleContaCorrente controle = new controleContaCorrente();
         while(true) {
             opcao = viewCliente.interfaceUsuario();
             if(opcao == 1){
                 System.out.println("Digite o valor que voce deseja sacar:");
                 valor = scan.nextDouble();
-                cliente.contaCorrente.sacar(valor);
+                if(controle.Saque(valor,cliente.contaCorrente)){
+                    System.out.println("Saque efetuado com sucesso!");
+                }
+                else{
+                    System.out.println("Não foi possivel efetuar este saque");
+                }
             }else if(opcao == 2){
                 System.out.println("Digite o valor que voce deseja depositar");
                 valor = scan.nextDouble();
-                cliente.contaCorrente.depositar(valor);
+                if(controle.Deposito(valor,cliente.contaCorrente)){
+                    System.out.println("Depósito efetuado com sucesso!");
+                }
+                else{
+                    System.out.println("Não é possivel efetuar um depósito de um valor negativo!");
+                }
             }else if(opcao == 3){
                 System.out.println("falta implementar");
             }else if(opcao == 4){

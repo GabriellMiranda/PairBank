@@ -6,10 +6,18 @@ public class controleContaCorrente {
     public ContaCorrente newContaCorrente(double valor){
         return new ContaCorrente(valor);
     }
-    public void Deposito(double valor,ContaCorrente conta){
+    public boolean Deposito(double valor,ContaCorrente conta){
+        if(valor < 0){
+            return false;
+        }
         conta.setValorCorrente(conta.getValorCorrente() + valor);
+        return true;
     }
-    public void Saque(double valor,ContaCorrente conta){
+    public boolean Saque(double valor,ContaCorrente conta){
+        if(conta.getValorCorrente() == 0 || conta.getValorCorrente() < valor || valor <= 0){
+            return false;
+        }
         conta.setValorCorrente(conta.getValorCorrente() - valor);
+        return true;
     }
 }
