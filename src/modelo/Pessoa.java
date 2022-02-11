@@ -13,6 +13,7 @@ public class Pessoa {
         this.rg = rg;
         this.dataNascimento = new Data(diaNascimento,mesNascimento,anoNascimento);
     }
+
     public String getNome(){
         return this.nome;
     }
@@ -25,6 +26,9 @@ public class Pessoa {
     public String getRg(){
         return this.rg;
     }
+    public int getDiaNascimento(){return this.dataNascimento.getDia();}
+    public int getMesNascimento(){return this.dataNascimento.getMes();}
+    public int getAnoNascimento(){return this.dataNascimento.getAno();}
     public int getIdade(){
         Calendar cal =  Calendar.getInstance();
         int anoAtual = cal.get(Calendar.YEAR);

@@ -1,21 +1,16 @@
 package visao;
 
-import modelo.BancoDeDados;
 import modelo.Cliente;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import modelo.Agencia;
 import controle.controleTela;
-import visao.visaoPessoa;
-import visao.visaoCliente;
 
 public class visaoTela {
 
     private Scanner scan;
-    BancoDeDados lerDados;
     ArrayList<Agencia> listAgencias = new ArrayList<Agencia>();
     ArrayList<Cliente> listClientes = new ArrayList<Cliente>();
 
@@ -28,15 +23,6 @@ public class visaoTela {
         controleTela control = new controleTela();
         listAgencias = (ArrayList<Agencia>) control.readAgencias();
         listClientes = (ArrayList<Cliente>) control.readClientes();
-        /*System.out.println("Todas as Agencias:");
-        for (Agencia listAgencia : listAgencias) {
-            System.out.println(listAgencia.toString());
-        }
-        System.out.println("---------------------------------------");
-        for(Cliente listCliente: listClientes){
-            System.out.println(listCliente.toString());
-        }
-        System.out.println("---------------------------------------");*/
 
         int opcao1;
         mostrarMenu();

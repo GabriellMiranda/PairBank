@@ -36,7 +36,9 @@ public class visaoCliente {
         String dia = new SimpleDateFormat("dd").format(dataHoraAtual);
         String mes = new SimpleDateFormat("MM").format(dataHoraAtual);
         String ano = new SimpleDateFormat("yyyy").format(dataHoraAtual);
-        return controle.cadastroCliente(agencia,conta,senha,tipoConta,nova,Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano));
+        return controle.cadastroCliente(agencia,conta,senha,tipoConta,nova.getNome(),nova.getCpf(),nova.getRg(),
+                nova.getDiaNascimento(),nova.getMesNascimento(),nova.getAnoNascimento(),
+                Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano));
     }
 
     public Cliente loginCliente(){
