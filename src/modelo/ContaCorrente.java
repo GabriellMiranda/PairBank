@@ -9,9 +9,9 @@ public class ContaCorrente {
         return this.ValorCorrente;
     }
 
-   /* public void setValorCorrente(double valor){
+   public void setValorCorrente(double valor){
         this.ValorCorrente = valor;
-    }*/
+    }
     public void sacar(double valor){
         this.ValorCorrente -= valor;
     }
