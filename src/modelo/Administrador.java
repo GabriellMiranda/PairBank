@@ -1,15 +1,12 @@
 package modelo;
 
-public class Administrador {
-    private String usuario;
+public class Administrador extends Pessoa{
     private String senha;
-    private String CPF;
     private String idCliente; //chave estrangeira
 
-    public Administrador(String usuario,String senha,String CPF){ // devem haver apenas duas contas ADM (vefiricar quanto implementar BD)
-        this.setUsuario(usuario);
+    public Administrador(String nome, String cpf, String rg, int diaNascimento,int mesNascimento,int anoNascimento,String senha){ // devem haver apenas duas contas ADM (vefiricar quanto implementar BD)
+        super(nome,cpf,rg,diaNascimento,mesNascimento,anoNascimento);
         this.setSenha(senha);
-        this.setCPF(CPF);
     }
 
     public String getSenha() {
@@ -17,19 +14,7 @@ public class Administrador {
     }
 
     public String getCPF() {
-        return CPF;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    private void setCPF(String CPF){
-        this.CPF = CPF;
+        return super.getCpf();
     }
 
     private void setSenha(String senha){
