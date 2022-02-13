@@ -78,29 +78,15 @@ public class visaoTela {
         double valor;
         visaoCliente viewCliente = new visaoCliente(this.listClientes);
         Cliente cliente = viewCliente.loginCliente();
-        controleContaCorrente controle = new controleContaCorrente();
+        visaoContaCorrente controle = new visaoContaCorrente();
         while(true) {
             opcao = viewCliente.interfaceUsuario();
-            if(opcao == 1){
-                System.out.println("Digite o valor que voce deseja sacar:");
-                valor = scan.nextDouble();
-                if(controle.Saque(valor,cliente.contaCorrente)){
-                    System.out.println("Saque efetuado com sucesso!");
-                }
-                else{
-                    System.out.println("Não foi possivel efetuar este saque");
-                }
-            }else if(opcao == 2){
-                System.out.println("Digite o valor que voce deseja depositar");
-                valor = scan.nextDouble();
-                if(controle.Deposito(valor,cliente.contaCorrente)){
-                    System.out.println("Depósito efetuado com sucesso!");
-                }
-                else{
-                    System.out.println("Não é possivel efetuar um depósito de um valor negativo!");
-                }
+            if(opcao == 1){ //Fazendo o saque na conta corrente
+                controle.sacar(cliente.contaCorrente);
+            }else if(opcao == 2){//Fazendo o deposito na conta corrente
+                controle.depositar(cliente.contaCorrente);
             }else if(opcao == 3){
-                System.out.println("falta implementar");
+                fazerPix(viewCliente, cliente);
             }else if(opcao == 4){
                 System.out.println("falta implementar");
             }else if(opcao == 5) {
@@ -111,6 +97,26 @@ public class visaoTela {
                 break;
             }
 
+        }
+    }
+    public void fazerPix(visaoCliente viewCliente, Cliente cliente){
+        System.out.println("Digite o numero do CPF:");
+        String cpf = scan.next();
+        Cliente cliente1 = viewCliente.retonarCliente(cpf);
+        if(cliente1 == null){
+            System.out.println("CPF Invalido!!");
+            return;
+        }
+        System.out.println("Digite o valor que você deseja transferir");
+        double valor = scan.nextInt();
+        controleContaCorrente controle = new controleContaCorrente();
+        boolean x = controle.pix(valor, cliente.contaCorrente);
+        if(x == true){
+            cliente1.contaCorrente.setValorCorrente(valor);
+            System.out.println("pix efetuado com sucesso!!");
+            return;
+        }else{
+            System.out.println("Você não tem saldo disponível!!");
         }
     }
 

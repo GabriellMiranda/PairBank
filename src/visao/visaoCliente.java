@@ -68,6 +68,8 @@ public class visaoCliente {
         System.out.print("Opcao: ");
         return scan.nextInt();
     }
-
+    public Cliente retonarCliente(String cpf){
+        return controle.retornaCliente(cpf);
+    }
 
 }

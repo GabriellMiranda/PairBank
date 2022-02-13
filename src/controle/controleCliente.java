@@ -30,4 +30,13 @@ public class controleCliente {
         }
         return null;
     }
+    public Cliente retornaCliente(String cpf){
+        for (Cliente c: this.listaClientes){
+            if(c.getCpf().equals(cpf)){
+                return c;
+            }
+        }
+        return null;
+    }
+
 }
