@@ -1,7 +1,5 @@
 package modelo;
 
-import java.awt.*;
-
 public class ContaPoupanca {
     private double valorPoupanca;
 
