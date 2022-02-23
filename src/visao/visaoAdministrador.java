@@ -22,5 +22,4 @@ public class visaoAdministrador {
         System.out.println("Digite o CPF:");
         String CPF = scan.next();
     }
-
 }

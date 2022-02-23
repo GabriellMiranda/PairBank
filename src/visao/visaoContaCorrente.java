@@ -2,6 +2,7 @@ package visao;
 import controle.controleContaCorrente;
 import modelo.ContaCorrente;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class visaoContaCorrente {
@@ -9,10 +10,16 @@ public class visaoContaCorrente {
     controleContaCorrente controle = new controleContaCorrente();
 
     public void sacar(ContaCorrente contaCorrente) {
-
+        double valor = 0;
         controleContaCorrente controle = new controleContaCorrente();
-        System.out.println("Digite o valor que voce deseja sacar:");
-        double valor = scan.nextDouble();
+        try {
+            System.out.println("Digite o valor que voce deseja sacar:");
+            valor = scan.nextDouble();
+        }catch (InputMismatchException ime){
+            System.err.println("Verifique se você digitou o valor correto! obs: não pode haver letras no saque.");
+            scan.nextLine();
+            return;
+        }
         if (controle.Saque(valor, contaCorrente)) {
             System.out.println("Saque efetuado com sucesso!");
         } else {
@@ -20,8 +27,16 @@ public class visaoContaCorrente {
         }
     }
     public void depositar(ContaCorrente contaCorrente){
-        System.out.println("Digite o valor que voce deseja depositar");
-        double valor = scan.nextDouble();
+        double valor = 0;
+        try {
+            System.out.println("Digite o valor que voce deseja depositar");
+            valor = scan.nextDouble();
+        }
+        catch (InputMismatchException ime){
+            System.err.println("Verifique se você digitou o valor correto! obs: não pode haver letras no deposito.");
+            scan.nextLine();// descarta a entrada errada do usuário
+            return;
+        }
         if(controle.Deposito(valor, contaCorrente)){
             System.out.println("Depósito efetuado com sucesso!");
         }
@@ -29,12 +44,5 @@ public class visaoContaCorrente {
             System.out.println("Não é possivel efetuar um depósito de um valor negativo!");
         }
     }
-
-    /*public void pix(ContaCorrente conta){
-        System.out.println("Digite o numero do CPF:");
-        String cpf = scan.next();
-        System.out.println("Digite o valor que você deseja transferir");
-        double valor = scan.nextInt();
-    }*/
 
 }

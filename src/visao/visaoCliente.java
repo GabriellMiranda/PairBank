@@ -8,6 +8,7 @@ import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class visaoCliente {
@@ -66,7 +67,15 @@ public class visaoCliente {
         System.out.println("7 - Sair");
         System.out.println("========================");
         System.out.print("Opcao: ");
-        return scan.nextInt();
+        try {
+            return scan.nextInt();
+        }
+        catch (InputMismatchException ime){
+            System.err.println("A opção deve ser um inteiro!!!");
+            scan.nextLine();
+            return 0;
+        }
+
     }
     public Cliente retonarCliente(String cpf){
         return controle.retornaCliente(cpf);

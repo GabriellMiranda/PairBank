@@ -4,6 +4,7 @@ import modelo.Cliente;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.Agencia;
 import controle.controleTela;
@@ -25,12 +26,18 @@ public class visaoTela {
         controleTela control = new controleTela();
         listAgencias = (ArrayList<Agencia>) control.readAgencias();
         listClientes = (ArrayList<Cliente>) control.readClientes();
-        int opcao1;
+        int opcao1 = 0;
         while(true){
             mostrarMenu();
-            opcao1 = scan.nextInt();
+            try {
+                opcao1 = scan.nextInt();
+            }
+            catch (InputMismatchException ime){
+                System.err.println("Por favor digite um valor inteiro como opção!!");
+                scan.nextLine();
+            }
             if(opcao1 == 1) {
-                cadastrarCliente();
+                this.cadastrarCliente();
             }
             else if(opcao1 == 2) {
                 this.leituraArquivo();
@@ -63,8 +70,9 @@ public class visaoTela {
             this.listClientes = aux;
             System.out.println("Cadastro efetuado com sucesso!");
         }
-        else{
+        else if(aux == null){
             System.out.println("Houve um erro ao efetuar o cadastro, favor tentar novamente!");
+            return;
         }
     }
     public void leituraArquivo() throws FileNotFoundException {
@@ -86,7 +94,7 @@ public class visaoTela {
             }else if(opcao == 2){//Fazendo o deposito na conta corrente
                 controle.depositar(cliente.contaCorrente);
             }else if(opcao == 3){
-                fazerPix(viewCliente, cliente);
+                this.fazerPix(viewCliente, cliente);
             }else if(opcao == 4){
                 System.out.println("falta implementar");
             }else if(opcao == 5) {
@@ -96,10 +104,10 @@ public class visaoTela {
             }else if(opcao == 7){
                 break;
             }
-
         }
     }
     public void fazerPix(visaoCliente viewCliente, Cliente cliente){
+        double valor = 0;
         System.out.println("Digite o numero do CPF:");
         String cpf = scan.next();
         Cliente cliente1 = viewCliente.retonarCliente(cpf);
@@ -107,8 +115,15 @@ public class visaoTela {
             System.out.println("CPF Invalido!!");
             return;
         }
-        System.out.println("Digite o valor que você deseja transferir");
-        double valor = scan.nextInt();
+        try {
+            System.out.println("Digite o valor que você deseja transferir");
+            valor = scan.nextInt();
+        }
+        catch (InputMismatchException ime){
+            System.err.println("transferência invalida!!, digite apenas números");
+            scan.nextLine();
+            return;
+        }
         controleContaCorrente controle = new controleContaCorrente();
         boolean x = controle.pix(valor, cliente.contaCorrente);
         if(x == true){
