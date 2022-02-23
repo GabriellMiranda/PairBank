@@ -30,10 +30,9 @@ public class Cliente extends Pessoa{
             return this.descricao;
         }
     }
-    public Cliente(String agencia, String conta, String senha, String tipodeconta,String nome, String cpf,
-                   String rg, int diaNascimento,int mesNascimento,int anoNascimento, int diaCriacao,
+    public Cliente(String agencia, String conta, String senha, String tipodeconta,String nome, String cpf, int diaNascimento,int mesNascimento,int anoNascimento, int diaCriacao,
                    int mesCriacao,int anoCriacao){
-        super(nome,cpf,rg,diaNascimento,mesNascimento,anoNascimento);
+        super(nome,cpf,diaNascimento,mesNascimento,anoNascimento);
         this.Agencia = agencia;
         this.dataCriacaodaConta = new Data(diaCriacao,mesCriacao,anoCriacao);
         this.defineTipoConta(tipodeconta);

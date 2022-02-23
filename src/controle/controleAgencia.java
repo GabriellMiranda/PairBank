@@ -3,6 +3,7 @@ package controle;
 import modelo.Agencia;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class controleAgencia {
     private ArrayList<Agencia> listaAgencias;
@@ -15,6 +16,11 @@ public class controleAgencia {
             return this.listaAgencias;
         }
         return null;
+    }
+    public String getAgencia(){
+        int tam = this.listaAgencias.size();
+        Random randomico = new Random();
+        return listaAgencias.get(randomico.nextInt(tam + 1)).getNumero();
     }
     private boolean notExistAgencia(String NumeroAgencia){
         for(Agencia a : this.listaAgencias){

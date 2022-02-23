@@ -1,5 +1,6 @@
 package visao;
 
+import controle.controleCadastro;
 import controle.controlePessoa;
 import modelo.Cliente;
 
@@ -7,20 +8,25 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.Pessoa;
 
+import java.util.logging.Logger;
+
 public class visaoPessoa {
     private Scanner scan;
     private Pessoa pessoa;
     private controlePessoa controle;
+    private controleCadastro controleC;
+    private static final Logger LOGGER = Logger.getLogger("visaoPessoa");
 
     public visaoPessoa(){
         scan = new Scanner(System.in);
         controle = new controlePessoa();
+        controleC = new controleCadastro();
     }
 
     public Pessoa cadastrarPessoa(){
         int mesNascimento = 0, anoNascimento = 0, diaNascimento = 0;
         System.out.println("Digite o Nome:");
-        String nome = scan.next();
+        String nome = scan.nextLine();
         try {
             System.out.println("Digite a data de nascimento:");
             System.out.println("Dia:");
@@ -37,17 +43,16 @@ public class visaoPessoa {
         }
         System.out.println("Digite o CPF:");
         String CPF = scan.next();
-        System.out.println("Digite o seu RG:");
-        String rg = scan.next();
-//      System.out.println("Digite o Salario:");
-//      double salario = scan.nextInt();
-        this.pessoa = controle.cadastroPessoa(nome,CPF,rg,diaNascimento,mesNascimento,anoNascimento);
-        if(this.pessoa != null){
-            return this.pessoa;
+        if(controleC.CPF(CPF)) {
+            this.pessoa = controle.cadastroPessoa(nome, CPF, diaNascimento, mesNascimento, anoNascimento);
+            if (this.pessoa != null) {
+                return this.pessoa;
+            } else {
+                System.out.println("Não foi possivel efetuar o cadastro, favor tentar novamente!");
+                return this.cadastrarPessoa();
+            }
         }
-        else{
-            System.out.println("Não foi possivel efetuar o cadastro, favor tentar novamente!");
-            return this.cadastrarPessoa();
-        }
+        LOGGER.info("CPF inválido!");
+        return null;
     }
 }

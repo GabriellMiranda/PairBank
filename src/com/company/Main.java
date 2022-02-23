@@ -5,9 +5,10 @@ package com.company;
 import visao.visaoTela;
 
 import java.io.FileNotFoundException;
+import java.util.logging.Logger;
 
 public class Main {
-
+    private static final Logger LOGGER = Logger.getLogger("PairBank");
     public static void main(String[] args) throws FileNotFoundException {
         visaoTela tela = new visaoTela();
        /* ConexaoDAO con = new ConexaoDAO();

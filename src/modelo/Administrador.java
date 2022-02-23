@@ -5,7 +5,7 @@ public class Administrador extends Pessoa{
     private String idCliente; //chave estrangeira
 
     public Administrador(String nome, String cpf, String rg, int diaNascimento,int mesNascimento,int anoNascimento,String senha){ // devem haver apenas duas contas ADM (vefiricar quanto implementar BD)
-        super(nome,cpf,rg,diaNascimento,mesNascimento,anoNascimento);
+        super(nome,cpf,diaNascimento,mesNascimento,anoNascimento);
         this.setSenha(senha);
     }
 

@@ -10,9 +10,10 @@ import modelo.Agencia;
 import controle.controleTela;
 import controle.controleContaPoupanca;
 import controle.controleContaCorrente;
+import java.util.logging.Logger;
 
 public class visaoTela {
-
+    private static final Logger LOGGER = Logger.getLogger("visaoTela");
     private Scanner scan;
     ArrayList<Agencia> listAgencias = new ArrayList<Agencia>();
     ArrayList<Cliente> listClientes = new ArrayList<Cliente>();
@@ -39,13 +40,10 @@ public class visaoTela {
             if(opcao1 == 1) {
                 this.cadastrarCliente();
             }
-            else if(opcao1 == 2) {
-                this.leituraArquivo();
-            }
-            else if(opcao1 == 3){
+            else if(opcao1 == 2){
                 this.fazeLogin();
             }
-            else if(opcao1 == 4){
+            else if(opcao1 == 3){
                 break;
             }
             else{
@@ -55,24 +53,19 @@ public class visaoTela {
     }
     public void mostrarMenu(){
         System.out.println("=================================");
-        System.out.println("1 - Cadastrar cliente");
-        System.out.println("2 - Leitura de arquivos");
-        System.out.println("3 - Fazer login");
-        System.out.println("4 - Sair");
+        System.out.println("1 - Cadastro");
+        System.out.println("2 - Fazer login");
+        System.out.println("3 - Sair");
         System.out.println("=================================");
         System.out.print("Opcao: ");
     }
 
     public void cadastrarCliente(){
-        visaoCliente viewCliente = new visaoCliente(this.listClientes);
+        visaoCliente viewCliente = new visaoCliente(this.listClientes,this.listAgencias);
         ArrayList<Cliente> aux = viewCliente.cadastrarCliente();
-        if(aux != null){
+        if(aux != null && aux.size() > listClientes.size()){
             this.listClientes = aux;
             System.out.println("Cadastro efetuado com sucesso!");
-        }
-        else if(aux == null){
-            System.out.println("Houve um erro ao efetuar o cadastro, favor tentar novamente!");
-            return;
         }
     }
     public void leituraArquivo() throws FileNotFoundException {
@@ -84,7 +77,7 @@ public class visaoTela {
     public void fazeLogin(){
         int opcao;
         double valor;
-        visaoCliente viewCliente = new visaoCliente(this.listClientes);
+        visaoCliente viewCliente = new visaoCliente(this.listClientes,this.listAgencias);
         Cliente cliente = viewCliente.loginCliente();
         visaoContaCorrente controle = new visaoContaCorrente();
         while(true) {

@@ -1,6 +1,9 @@
 package visao;
 
+import controle.controleAgencia;
+import controle.controleCadastro;
 import controle.controleCliente;
+import modelo.Agencia;
 import modelo.Cliente;
 import modelo.Pessoa;
 
@@ -10,50 +13,73 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class visaoCliente {
 
     private Scanner scan;
     private Cliente cliente;
-    private controleCliente controle;
+    private controleCliente controleCli;
+    private controleAgencia controleAg;
+    private controleCadastro controleC;
+    private static final Logger LOGGER = Logger.getLogger("visaoCliente");
 
-    public visaoCliente(ArrayList <Cliente> listaClientes){
+    public visaoCliente(ArrayList <Cliente> listaClientes, ArrayList<Agencia> agencias){
         scan = new Scanner(System.in);
-        controle = new controleCliente(listaClientes);
+        controleCli = new controleCliente(listaClientes);
+        controleAg = new controleAgencia(agencias);
+        controleC = new controleCadastro();
     }
 
     public ArrayList <Cliente> cadastrarCliente(){
+        String[] tiposDeConta = new String[]{"corrente","poupança"};
         visaoPessoa pessoaview = new visaoPessoa();
-        System.out.println("Digite a Agência:");
-        String agencia = scan.next();
-        System.out.println("Digite a Conta:");
-        String conta = scan.next();
-        System.out.println("Digite senha:");
-        String senha = scan.next();
-        System.out.println("Digite o tipo de conta:");
-        String tipoConta = scan.next();
-        Pessoa nova = pessoaview.cadastrarPessoa();
-        Date dataHoraAtual = new Date();
-        String dia = new SimpleDateFormat("dd").format(dataHoraAtual);
-        String mes = new SimpleDateFormat("MM").format(dataHoraAtual);
-        String ano = new SimpleDateFormat("yyyy").format(dataHoraAtual);
-        return controle.cadastroCliente(agencia,conta,senha,tipoConta,nova.getNome(),nova.getCpf(),nova.getRg(),
-                nova.getDiaNascimento(),nova.getMesNascimento(),nova.getAnoNascimento(),
-                Integer.parseInt(dia),Integer.parseInt(mes),Integer.parseInt(ano));
+        System.out.println("Escolha uma senha:");
+        String senha = scan.nextLine();
+        if(controleC.SENHA(senha)) {
+            System.out.println("Escolha o tipo de conta |||  OP[1]: Corrente | OP[2]: Poupança:");
+            System.out.print("OP: ");
+            int opcao = scanInt();
+            if(opcao == 0){
+                return cadastrarCliente();
+            }
+            else if (opcao != 1 && opcao != 2) {
+                System.out.println("Opção de conta não existente! Escolha 1 para corrente e 2 para poupança!");
+                return null;
+            }
+            else {
+                Pessoa nova = pessoaview.cadastrarPessoa();
+                if(nova == null){
+                    return null;
+                }
+                Date dataHoraAtual = new Date();
+                String dia = new SimpleDateFormat("dd").format(dataHoraAtual);
+                String mes = new SimpleDateFormat("MM").format(dataHoraAtual);
+                String ano = new SimpleDateFormat("yyyy").format(dataHoraAtual);
+                return controleCli.cadastroCliente(controleAg.getAgencia(), controleCli.getNewNumConta(), senha, tiposDeConta[opcao], nova.getNome(), nova.getCpf(),
+                        nova.getDiaNascimento(), nova.getMesNascimento(), nova.getAnoNascimento(),
+                        Integer.parseInt(dia), Integer.parseInt(mes), Integer.parseInt(ano));
+            }
+        }
+        return null;
     }
 
     public Cliente loginCliente(){
         System.out.println("Digite seu CPF:");
         String CPF = scan.next();
-        System.out.println("Digite senha:");
-        String senha = scan.next();
-        this.cliente = controle.login(CPF,senha);
-        if(this.cliente == null){
-            System.out.println("Senha ou CPF incorretos!!");
-            return this.loginCliente();
+        if(controleC.CPF(CPF)) {
+            System.out.println("Digite senha:");
+            String senha = scan.next();
+            this.cliente = controleCli.login(CPF, senha);
+            if (this.cliente == null) {
+                LOGGER.info("Senha ou CPF incorretos!!");
+                return this.loginCliente();
+            }
+            LOGGER.info("Login efetuado com sucesso!");
+            return this.cliente;
         }
-        System.out.println("Login efetuado com sucesso!");
-        return this.cliente;
+        LOGGER.info("CPF inexistente");
+        return null;
     }
 
     public int interfaceUsuario(){
@@ -67,18 +93,21 @@ public class visaoCliente {
         System.out.println("7 - Sair");
         System.out.println("========================");
         System.out.print("Opcao: ");
+        return scanInt();
+
+    }
+    public int scanInt(){
         try {
             return scan.nextInt();
         }
         catch (InputMismatchException ime){
-            System.err.println("A opção deve ser um inteiro!!!");
+            System.out.println("A opção deve ser um inteiro!!!");
             scan.nextLine();
             return 0;
         }
-
     }
     public Cliente retonarCliente(String cpf){
-        return controle.retornaCliente(cpf);
+        return controleCli.retornaCliente(cpf);
     }
 
 }
