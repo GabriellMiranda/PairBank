@@ -67,19 +67,15 @@ public class visaoCliente {
     public Cliente loginCliente(){
         System.out.println("Digite seu CPF:");
         String CPF = scan.next();
-        if(controleC.CPF(CPF)) {
-            System.out.println("Digite senha:");
-            String senha = scan.next();
-            this.cliente = controleCli.login(CPF, senha);
-            if (this.cliente == null) {
-                LOGGER.info("Senha ou CPF incorretos!!");
-                return this.loginCliente();
-            }
-            LOGGER.info("Login efetuado com sucesso!");
-            return this.cliente;
+        System.out.println("Digite senha:");
+        String senha = scan.next();
+        this.cliente = controleCli.login(CPF, senha);
+        if (this.cliente == null) {
+            LOGGER.info("Senha ou CPF incorretos!!");
+            return this.loginCliente();
         }
-        LOGGER.info("CPF inexistente");
-        return null;
+        LOGGER.info("Login efetuado com sucesso!");
+        return this.cliente;
     }
 
     public int interfaceUsuario(){
