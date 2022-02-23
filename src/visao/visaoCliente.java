@@ -52,6 +52,7 @@ public class visaoCliente {
                 if(nova == null){
                     return null;
                 }
+                System.out.println("Cadastro efetuado com sucesso!!");
                 Date dataHoraAtual = new Date();
                 String dia = new SimpleDateFormat("dd").format(dataHoraAtual);
                 String mes = new SimpleDateFormat("MM").format(dataHoraAtual);

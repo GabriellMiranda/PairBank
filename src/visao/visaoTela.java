@@ -32,23 +32,24 @@ public class visaoTela {
             mostrarMenu();
             try {
                 opcao1 = scan.nextInt();
+                if(opcao1 == 1) {
+                    this.cadastrarCliente();
+                }
+                else if(opcao1 == 2){
+                    this.fazeLogin();
+                }
+                else if(opcao1 == 3){
+                    break;
+                }
+                else{
+                    System.out.println("Opção invalidade!!\nDigite novamente:");
+                }
             }
             catch (InputMismatchException ime){
                 System.err.println("Por favor digite um valor inteiro como opção!!");
                 scan.nextLine();
             }
-            if(opcao1 == 1) {
-                this.cadastrarCliente();
-            }
-            else if(opcao1 == 2){
-                this.fazeLogin();
-            }
-            else if(opcao1 == 3){
-                break;
-            }
-            else{
-                System.out.println("Opção invalidade!!\nDigite novamente:");
-            }
+
         }
     }
     public void mostrarMenu(){
