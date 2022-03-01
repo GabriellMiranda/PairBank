@@ -13,10 +13,7 @@ import java.util.logging.Logger;
 public class Main {
     private static final Logger LOGGER = Logger.getLogger("PairBank");
     public static void main(String[] args) throws FileNotFoundException, SQLException {
-        visaoTela tela = new visaoTela();
-        ClienteDao clienteDao = new ClienteDao();
-        Cliente cliente = clienteDao.loginBD("04582568203","Amora123");
-        System.out.println(cliente.toString());
-        tela.telaInicial();
+       visaoTela tela = new visaoTela();
+       tela.telaInicial();
     }
 }

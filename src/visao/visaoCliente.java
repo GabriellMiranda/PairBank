@@ -7,6 +7,7 @@ import modelo.Agencia;
 import modelo.Cliente;
 import modelo.Pessoa;
 
+import java.sql.SQLException;
 import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,14 +25,14 @@ public class visaoCliente {
     private controleCadastro controleC;
     private static final Logger LOGGER = Logger.getLogger("visaoCliente");
 
-    public visaoCliente(ArrayList <Cliente> listaClientes, ArrayList<Agencia> agencias){
+    public visaoCliente(){
         scan = new Scanner(System.in);
-        controleCli = new controleCliente(listaClientes);
-        controleAg = new controleAgencia(agencias);
+        controleCli = new controleCliente();
+        controleAg = new controleAgencia();
         controleC = new controleCadastro();
     }
 
-    public ArrayList <Cliente> cadastrarCliente(){
+    public boolean cadastrarCliente() throws SQLException {
         String[] tiposDeConta = new String[]{"corrente","poupança"};
         visaoPessoa pessoaview = new visaoPessoa();
         System.out.println("Escolha uma senha:");
@@ -45,12 +46,12 @@ public class visaoCliente {
             }
             else if (opcao != 1 && opcao != 2) {
                 System.out.println("Opção de conta não existente! Escolha 1 para corrente e 2 para poupança!");
-                return null;
+                return false;
             }
             else {
                 Pessoa nova = pessoaview.cadastrarPessoa();
                 if(nova == null){
-                    return null;
+                    return false;
                 }
                 System.out.println("Cadastro efetuado com sucesso!!");
                 Date dataHoraAtual = new Date();
@@ -62,10 +63,10 @@ public class visaoCliente {
                         Integer.parseInt(dia), Integer.parseInt(mes), Integer.parseInt(ano));
             }
         }
-        return null;
+        return false;
     }
 
-    public Cliente loginCliente(){
+    public Cliente loginCliente() throws SQLException {
         System.out.println("Digite seu CPF:");
         String CPF = scan.next();
         System.out.println("Digite senha:");

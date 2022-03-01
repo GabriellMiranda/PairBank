@@ -3,30 +3,25 @@ package visao;
 import modelo.Cliente;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.Agencia;
-import controle.controleTela;
-import controle.controleContaPoupanca;
 import controle.controleContaCorrente;
 import java.util.logging.Logger;
 
 public class visaoTela {
     private static final Logger LOGGER = Logger.getLogger("visaoTela");
     private Scanner scan;
-    ArrayList<Agencia> listAgencias = new ArrayList<Agencia>();
-    ArrayList<Cliente> listClientes = new ArrayList<Cliente>();
+
 
     public visaoTela(){
         scan = new Scanner(System.in);
     }
 
 
-    public void telaInicial() throws FileNotFoundException {
-        controleTela control = new controleTela();
-        listAgencias = (ArrayList<Agencia>) control.readAgencias();
-        listClientes = (ArrayList<Cliente>) control.readClientes();
+    public void telaInicial() {
         int opcao1 = 0;
         while(true){
             mostrarMenu();
@@ -45,7 +40,7 @@ public class visaoTela {
                     System.out.println("Opção invalidade!!\nDigite novamente:");
                 }
             }
-            catch (InputMismatchException ime){
+            catch (InputMismatchException | SQLException ime){
                 System.err.println("Por favor digite um valor inteiro como opção!!");
                 scan.nextLine();
             }
@@ -61,24 +56,17 @@ public class visaoTela {
         System.out.print("Opcao: ");
     }
 
-    public void cadastrarCliente(){
-        visaoCliente viewCliente = new visaoCliente(this.listClientes,this.listAgencias);
-        ArrayList<Cliente> aux = viewCliente.cadastrarCliente();
-        if(aux != null && aux.size() > listClientes.size()){
-            this.listClientes = aux;
-            System.out.println("Cadastro efetuado com sucesso!");
+    public void cadastrarCliente() throws SQLException {
+        visaoCliente viewCliente = new visaoCliente();
+        if(viewCliente.cadastrarCliente()){
+            System.out.println("Castro efetuado com sucesso!");
         }
     }
-    public void leituraArquivo() throws FileNotFoundException {
-        controleTela control = new controleTela();
-        this.listClientes = (ArrayList<Cliente>) control.readClientes();
-        this.listAgencias = (ArrayList<Agencia>) control.readAgencias();
-        System.out.println("Dados carregados com sucesso!");
-    }
-    public void fazeLogin(){
+
+    public void fazeLogin() throws SQLException {
         int opcao;
         double valor;
-        visaoCliente viewCliente = new visaoCliente(this.listClientes,this.listAgencias);
+        visaoCliente viewCliente = new visaoCliente();
         Cliente cliente = viewCliente.loginCliente();
         visaoContaCorrente controle = new visaoContaCorrente();
         while(true) {

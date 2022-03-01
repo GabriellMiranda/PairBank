@@ -22,6 +22,11 @@ public class Pessoa {
     public String getCpf(){
         return this.cpf;
     }
+
+    public double getSalario() {
+        return salario;
+    }
+
     public int getDiaNascimento(){return this.dataNascimento.getDia();}
     public int getMesNascimento(){return this.dataNascimento.getMes();}
     public int getAnoNascimento(){return this.dataNascimento.getAno();}

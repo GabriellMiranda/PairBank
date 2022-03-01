@@ -2,20 +2,17 @@ package controle;
 
 import modelo.Agencia;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class controleAgencia {
-    private ArrayList<Agencia> listaAgencias;
-
-    public controleAgencia(ArrayList<Agencia> agencias){this.listaAgencias = agencias;}
-
-    public ArrayList<Agencia> newAgencia(String nomeAgencia,String NumeroAgencia,String nomeGerente){
-        if(this.notExistAgencia(NumeroAgencia)){
-            this.listaAgencias.add(new Agencia(nomeAgencia,NumeroAgencia,nomeGerente));
-            return this.listaAgencias;
-        }
-        return null;
+    private agenciaDao agenciadao;
+    public controleAgencia(){
+        agenciadao = new agenciaDao();
+    }
+    public boolean newAgencia(String nomeAgencia,String NumeroAgencia,String nomeGerente) throws SQLException {
+      return agenciadao.inserirAgencia(new Agencia(nomeAgencia,NumeroAgencia,nomeGerente));
     }
     public String getAgencia(){
         int tam = this.listaAgencias.size();
