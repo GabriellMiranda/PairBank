@@ -38,7 +38,7 @@ public class visaoCliente {
         System.out.println("Escolha uma senha:");
         String senha = scan.nextLine();
         if(controleC.SENHA(senha)) {
-            System.out.println("Escolha o tipo de conta |||  OP[1]: Corrente | OP[2]: Poupança:");
+            System.out.println("Escolha o tipo de conta |||  OP[1]: Corrente | OP[2]: Poupança:"); // exceção
             System.out.print("OP: ");
             int opcao = scanInt();
             if(opcao == 0){
@@ -53,12 +53,11 @@ public class visaoCliente {
                 if(nova == null){
                     return false;
                 }
-                System.out.println("Cadastro efetuado com sucesso!!");
                 Date dataHoraAtual = new Date();
                 String dia = new SimpleDateFormat("dd").format(dataHoraAtual);
                 String mes = new SimpleDateFormat("MM").format(dataHoraAtual);
                 String ano = new SimpleDateFormat("yyyy").format(dataHoraAtual);
-                return controleCli.cadastroCliente(controleAg.getAgencia(), controleCli.getNewNumConta(), senha, tiposDeConta[opcao], nova.getNome(), nova.getCpf(),
+                return controleCli.cadastroCliente(controleAg.getAgencia(), controleCli.getNewNumConta(), senha, tiposDeConta[opcao-1], nova.getNome(), nova.getCpf(),
                         nova.getDiaNascimento(), nova.getMesNascimento(), nova.getAnoNascimento(),
                         Integer.parseInt(dia), Integer.parseInt(mes), Integer.parseInt(ano));
             }

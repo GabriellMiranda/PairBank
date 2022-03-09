@@ -23,26 +23,18 @@ public class controleCliente {
     public boolean cadastroCliente(String agencia, String conta, String senha, String tipodeconta,String nome, String cpf, int diaNascimento,int mesNascimento,int anoNascimento, int diaCriacao,
                                               int mesCriacao,int anoCriacao) throws SQLException {
 
-//        if(clienteDao.clienteExiste(cpf)){
-//            LOGGER.info("CLiente já existente no banco de dados");
-//            return false;
-//        }
-//        //clienteDao.inserirCliente(new Cliente(agencia,conta,senha,tipodeconta,nome,cpf,diaNascimento,mesNascimento,anoNascimento,diaCriacao, mesCriacao,anoCriacao));
-      return false;
+       if(clienteDao.clienteExiste(cpf)){
+           LOGGER.info("CLiente já existente no banco de dados");
+           return false;
+       }
+       clienteDao.inserirCliente(new Cliente(agencia,conta,senha,tipodeconta,nome,cpf,diaNascimento,mesNascimento,anoNascimento,diaCriacao, mesCriacao,anoCriacao));
+       return true;
     }
     public String getNewNumConta(){
         Random randomico = new Random();
-        int numConta = randomico.nextInt(1000,9999);
-        if(clienteDao.qtdClientes() == 8999){
-            LOGGER.warning("Não é mais possível criar uma nova conta");
-            return null;
-        }
-        if(clienteDao.contaEmBd(Integer.toString(numConta))){
-            return getNewNumConta();
-        }
+        int numConta = 5;
         return Integer.toString(numConta);
     }
-
 
     public Cliente login(String CPF,String senha) throws SQLException {
         return clienteDao.loginBD(CPF, senha);

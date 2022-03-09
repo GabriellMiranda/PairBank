@@ -34,6 +34,8 @@ public class visaoTela {
                     this.fazeLogin();
                 }
                 else if(opcao1 == 3){
+                    System.out.println("Falta implementar");
+                }else if(opcao1 == 4){
                     break;
                 }
                 else{
@@ -50,8 +52,9 @@ public class visaoTela {
     public void mostrarMenu(){
         System.out.println("=================================");
         System.out.println("1 - Cadastro");
-        System.out.println("2 - Fazer login");
-        System.out.println("3 - Sair");
+        System.out.println("2 - Login cliente");
+        System.out.println("3 - Login administrador");
+        System.out.println("4 - Sair");
         System.out.println("=================================");
         System.out.print("Opcao: ");
     }
@@ -109,7 +112,7 @@ public class visaoTela {
         controleContaCorrente controle = new controleContaCorrente();
         boolean x = controle.pix(valor, cliente.contaCorrente);
         if(x == true){
-            cliente1.contaCorrente.setValorCorrente(valor);
+            cliente1.contaCorrente.setValor(valor);
             System.out.println("pix efetuado com sucesso!!");
             return;
         }else{

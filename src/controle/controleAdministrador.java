@@ -10,4 +10,21 @@ public class controleAdministrador {
         }
         return null;
     }
+    public void listarClientes(){
+
+    }
+    public void liberarContaCliente(){
+
+    }
+    public void verificarSaldoCliente(){
+
+    }
+    public void cancelarContaCliente(){
+
+    }
+    public void acessarCliente(){
+
+    }
+
+
 }

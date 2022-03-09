@@ -4,6 +4,7 @@ import conexao.Conexao;
 import modelo.Cliente;
 
 import java.sql.*;
+import java.util.Objects;
 
 public class ClienteDao {
     private Conexao conexao;
@@ -18,7 +19,7 @@ public class ClienteDao {
 
     public void inserirCliente(Cliente cliente) throws SQLException {
         String sql = "INSERT INTO cliente(cpf, nome, salario, datanascimento, agencia, conta, senha, datacriacaoconta, tipoconta)" +
-                "VALUES(?,?,?,?,?,?,?,?,?)";
+                "VALUES(?,?,?,?,?,?,?,?,?);";
         try{
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
             stmt.setString(1,cliente.getCpf());
@@ -41,7 +42,7 @@ public class ClienteDao {
 
         Cliente cliente = null;
         try {
-            String sql = "select * from cliente where CPF = ? AND senha = ?";
+            String sql = "select * from cliente where CPF = ? AND senha = ?;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
             stmt.setString(1, cpf);
             stmt.setString(2, senha1);
@@ -64,46 +65,25 @@ public class ClienteDao {
 
     public boolean clienteExiste(String cpf){
         try{
-            String sql = "select * from cliente where CPF = ?";
+            String sql = "select cpf from cliente where CPF = ?;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
             stmt.setString(1, cpf);
             ResultSet p = stmt.executeQuery();
-            return p != null;
+            if(p.next()){
+                return Objects.equals(p.getString("cpf"), cpf);
+            }
+            return false;
         }catch (SQLException ee){
             System.err.println(ee.getMessage());
             return false;
         }
     }
 
-    public int qtdClientes(){
-        try{
-            String sql = "select COUT(*) from cliente";
-            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
-            ResultSet p = stmt.executeQuery();
-            return Integer.parseInt(String.valueOf(p.next()));
-        }catch (SQLException ee){
-            System.err.println(ee.getMessage());
-            return -1;
-        }
-    }
-
-    public boolean contaEmBd(String conta){
-        try{
-            String sql = "select * from cliente where conta = ?";
-            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
-            stmt.setString(1, conta);
-            ResultSet p = stmt.executeQuery();
-            return p != null;
-        }catch (SQLException ee){
-            System.err.println(ee.getMessage());
-            return false;
-        }
-    }
 
     public Cliente retornaCliente(String cpf){
         Cliente cliente = null;
         try{
-            String sql = "select * from cliente where CPF = ?";
+            String sql = "select * from cliente where CPF = ?;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
             stmt.setString(1, cpf);
             ResultSet p = stmt.executeQuery();

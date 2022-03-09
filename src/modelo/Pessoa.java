@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Calendar;
 
-public class Pessoa {
+public class Pessoa{
     private String nome, cpf;
     private Data dataNascimento;
     private double salario;

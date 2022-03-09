@@ -11,21 +11,21 @@ public class controleContaCorrente {
         if(valor < 0){
             return false;
         }
-        conta.setValorCorrente(conta.getValorCorrente() + valor);
+        conta.setValor(conta.getValor() + valor);
         return true;
     }
     public boolean Saque(double valor,ContaCorrente conta){
-        if(conta.getValorCorrente() == 0 || conta.getValorCorrente() < valor || valor <= 0){
+        if(conta.getValor() == 0 || conta.getValor() < valor || valor <= 0){
             return false;
         }
-        conta.setValorCorrente(conta.getValorCorrente() - valor);
+        conta.setValor(conta.getValor() - valor);
         return true;
     }
     public boolean pix(double valor, ContaCorrente conta){
-        if(conta.getValorCorrente() == 0 || conta.getValorCorrente() < valor || valor <= 0){
+        if(conta.getValor() == 0 || conta.getValor() < valor || valor <= 0){
             return false;
         }
-        conta.setValorCorrente(conta.getValorCorrente() - valor);
+        conta.setValor(conta.getValor() - valor);
         return true;
     }
 }

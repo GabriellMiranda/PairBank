@@ -15,14 +15,14 @@ public class controleContaPoupanca {
         if(valor<0){
             return false;
         }
-        conta.setValorPoupanca(conta.getValorPoupanca() + valor);
+        conta.setValor(conta.getValor() + valor);
         return true;
     }
     public boolean Saque(double valor,ContaPoupanca conta){
-        if(conta.getValorPoupanca() == 0 || conta.getValorPoupanca() < valor || valor <= 0){
+        if(conta.getValor() == 0 || conta.getValor() < valor || valor <= 0){
             return false;
         }
-        conta.setValorPoupanca(conta.getValorPoupanca() - valor);
+        conta.setValor(conta.getValor() - valor);
         return true;
     }
 }
