@@ -1,18 +1,18 @@
 package visao;
-import controle.controleContaCorrente;
+import controle.ControleContaCorrente;
 import modelo.ContaCorrente;
 
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class visaoContaCorrente {
+public class VisaoContaCorrente {
     Scanner scan = new Scanner(System.in);
-    controleContaCorrente controle = new controleContaCorrente();
+    ControleContaCorrente controle = new ControleContaCorrente();
 
     public void sacar(ContaCorrente contaCorrente) {
         double valor = 0;
-        controleContaCorrente controle = new controleContaCorrente();
+        ControleContaCorrente controle = new ControleContaCorrente();
         try {
             System.out.println("Digite o valor que voce deseja sacar:");
             valor = scan.nextDouble();

@@ -1,14 +1,14 @@
 package controle;
 
-import Dao.controleContaCorrenteDao;
+import Dao.ControleContaCorrenteDao;
 import modelo.ContaCorrente;
 
 import java.sql.SQLException;
 
-public class controleContaCorrente {
-    private controleContaCorrenteDao correnteDao;
-    public controleContaCorrente(){
-        correnteDao = new controleContaCorrenteDao();
+public class ControleContaCorrente {
+    private ControleContaCorrenteDao correnteDao;
+    public ControleContaCorrente(){
+        correnteDao = new ControleContaCorrenteDao();
     }
     public ContaCorrente newContaCorrente(double valor){
         return new ContaCorrente(valor);

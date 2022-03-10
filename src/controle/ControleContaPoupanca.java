@@ -1,9 +1,8 @@
 package controle;
 
-import modelo.ContaCorrente;
 import modelo.ContaPoupanca;
 
-public class controleContaPoupanca {
+public class ControleContaPoupanca {
     public ContaPoupanca newContaPoupanca(double valor){
         if(valor > 50) {
             return new ContaPoupanca(valor);

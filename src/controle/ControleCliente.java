@@ -2,20 +2,18 @@ package controle;
 
 import Dao.ClienteDao;
 import modelo.Cliente;
-import modelo.Pessoa;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Random;
 
 import java.util.logging.Logger;
 
-public class controleCliente {
+public class ControleCliente {
     private static final Logger LOGGER = Logger.getLogger("controleCliente");
-    private controleCadastro validar = new controleCadastro();
+    private ControleCadastro validar = new ControleCadastro();
     private ClienteDao clienteDao;
 
-    public controleCliente(){
+    public ControleCliente(){
         clienteDao = new ClienteDao();
     }
 

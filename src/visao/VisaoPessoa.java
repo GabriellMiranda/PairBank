@@ -1,8 +1,7 @@
 package visao;
 
-import controle.controleCadastro;
-import controle.controlePessoa;
-import modelo.Cliente;
+import controle.ControleCadastro;
+import controle.ControlePessoa;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,17 +9,17 @@ import modelo.Pessoa;
 
 import java.util.logging.Logger;
 
-public class visaoPessoa {
+public class VisaoPessoa {
     private Scanner scan;
     private Pessoa pessoa;
-    private controlePessoa controle;
-    private controleCadastro controleC;
+    private ControlePessoa controle;
+    private ControleCadastro controleC;
     private static final Logger LOGGER = Logger.getLogger("visaoPessoa");
 
-    public visaoPessoa(){
+    public VisaoPessoa(){
         scan = new Scanner(System.in);
-        controle = new controlePessoa();
-        controleC = new controleCadastro();
+        controle = new ControlePessoa();
+        controleC = new ControleCadastro();
     }
 
     public Pessoa cadastrarPessoa(){

@@ -2,24 +2,20 @@ package visao;
 
 import modelo.Cliente;
 
-import java.io.FileNotFoundException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import modelo.Agencia;
-import controle.controleContaCorrente;
+
+import controle.ControleContaCorrente;
 import java.util.logging.Logger;
 
-public class visaoTela {
+public class VisaoTela {
     private static final Logger LOGGER = Logger.getLogger("visaoTela");
     private Scanner scan;
 
-
-    public visaoTela(){
+    public VisaoTela(){
         scan = new Scanner(System.in);
     }
-
 
     public void telaInicial() {
         int opcao1 = 0;
@@ -52,15 +48,15 @@ public class visaoTela {
     public void mostrarMenu(){
         System.out.println("=================================");
         System.out.println("1 - Cadastro");
-        System.out.println("2 - Login cliente");
-        System.out.println("3 - Login administrador");
+        System.out.println("2 - Login Cliente");
+        System.out.println("3 - Login Gerente");
         System.out.println("4 - Sair");
         System.out.println("=================================");
         System.out.print("Opcao: ");
     }
 
     public void cadastrarCliente() throws SQLException {
-        visaoCliente viewCliente = new visaoCliente();
+        VisaoCliente viewCliente = new VisaoCliente();
         if(viewCliente.cadastrarCliente()){
             System.out.println("Castro efetuado com sucesso!");
         }
@@ -69,9 +65,9 @@ public class visaoTela {
     public void fazeLogin() throws SQLException {
         int opcao;
         double valor;
-        visaoCliente viewCliente = new visaoCliente();
+        VisaoCliente viewCliente = new VisaoCliente();
         Cliente cliente = viewCliente.loginCliente();
-        visaoContaCorrente controle = new visaoContaCorrente();
+        VisaoContaCorrente controle = new VisaoContaCorrente();
         while(true) {
             opcao = viewCliente.interfaceUsuario();
             if(opcao == 1){ //Fazendo o saque na conta corrente
@@ -91,7 +87,7 @@ public class visaoTela {
             }
         }
     }
-    public void fazerPix(visaoCliente viewCliente, Cliente cliente){
+    public void fazerPix(VisaoCliente viewCliente, Cliente cliente){
         double valor = 0;
         System.out.println("Digite o numero do CPF:");
         String cpf = scan.next();
@@ -109,7 +105,7 @@ public class visaoTela {
             scan.nextLine();
             return;
         }
-        controleContaCorrente controle = new controleContaCorrente();
+        ControleContaCorrente controle = new ControleContaCorrente();
         boolean x = controle.pix(valor, cliente.contaCorrente);
         if(x == true){
             cliente1.contaCorrente.setValor(valor);

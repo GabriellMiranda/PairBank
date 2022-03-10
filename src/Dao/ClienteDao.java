@@ -18,7 +18,7 @@ public class ClienteDao {
     }
  //Inserindo um cliente no banco de dados
     public void inserirCliente(Cliente cliente) throws SQLException {
-        controleContaCorrenteDao correnteDao = new controleContaCorrenteDao();
+        ControleContaCorrenteDao correnteDao = new ControleContaCorrenteDao();
         String sql = "INSERT INTO cliente(cpf, nome, salario, datanascimento, agencia, conta, senha, datacriacaoconta, tipoconta)" +
                 "VALUES(?,?,?,?,?,?,?,?,?);";
         try{
@@ -33,7 +33,11 @@ public class ClienteDao {
             stmt.setString(8,cliente.getDataCriacaodaConta());
             stmt.setString(9,cliente.getTipodeConta());
             stmt.execute();
-            correnteDao.inserirContaCorrenteEmBD(0, cliente.getCpf());
+            if(cliente.getTipodeConta().equals("corrente")) {
+                correnteDao.inserirContaCorrenteEmBD(0, cliente.getCpf());
+            }else{
+                System.out.println("Vou criar a contra poupança");
+            }
         }catch (Exception e){
             System.err.println("Inserção Falhou"+e.getMessage());
         }

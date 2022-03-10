@@ -3,13 +3,11 @@ package controle;
 import modelo.Agencia;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Random;
 
-public class controleAgencia {
-    private agenciaDao agenciadao;
-    public controleAgencia(){
-        agenciadao = new agenciaDao();
+public class ControleAgencia {
+    private AgenciaDao agenciadao;
+    public ControleAgencia(){
+        agenciadao = new AgenciaDao();
     }
     public boolean newAgencia(String nomeAgencia,String NumeroAgencia,String nomeGerente) throws SQLException {
       return agenciadao.inserirAgencia(new Agencia(nomeAgencia,NumeroAgencia,nomeGerente));

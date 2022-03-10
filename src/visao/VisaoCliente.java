@@ -1,40 +1,37 @@
 package visao;
 
-import controle.controleAgencia;
-import controle.controleCadastro;
-import controle.controleCliente;
-import modelo.Agencia;
+import controle.ControleAgencia;
+import controle.ControleCadastro;
+import controle.ControleCliente;
 import modelo.Cliente;
 import modelo.Pessoa;
 
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class visaoCliente {
+public class VisaoCliente {
 
     private Scanner scan;
     private Cliente cliente;
-    private controleCliente controleCli;
-    private controleAgencia controleAg;
-    private controleCadastro controleC;
+    private ControleCliente controleCli;
+    private ControleAgencia controleAg;
+    private ControleCadastro controleC;
     private static final Logger LOGGER = Logger.getLogger("visaoCliente");
 
-    public visaoCliente(){
+    public VisaoCliente(){
         scan = new Scanner(System.in);
-        controleCli = new controleCliente();
-        controleAg = new controleAgencia();
-        controleC = new controleCadastro();
+        controleCli = new ControleCliente();
+        controleAg = new ControleAgencia();
+        controleC = new ControleCadastro();
     }
 
     public boolean cadastrarCliente() throws SQLException {
         String[] tiposDeConta = new String[]{"corrente","poupança"};
-        visaoPessoa pessoaview = new visaoPessoa();
+        VisaoPessoa pessoaview = new VisaoPessoa();
         System.out.println("Escolha uma senha:");
         String senha = scan.nextLine();
         if(controleC.SENHA(senha)) {

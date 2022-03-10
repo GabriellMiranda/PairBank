@@ -4,13 +4,13 @@ import conexao.Conexao;
 
 import java.sql.*;
 
-public class controleContaCorrenteDao {
+public class ControleContaCorrenteDao {
     private Conexao conexao;
     private Connection conn;
     private Statement statement;
 
     //Criando o construtor da classe, fazendo a conexão com o banco de dados
-    public controleContaCorrenteDao(){
+    public ControleContaCorrenteDao(){
         conexao = new Conexao();
         conn = conexao.getConnection();
     }

@@ -1,10 +1,7 @@
 package controle;
-import modelo.Cliente;
-import modelo.Pessoa;
-import modelo.Administrador;
 import java.util.logging.Logger;
 
-public class controleCadastro {
+public class ControleCadastro {
 
     private static final Logger LOGGER = Logger.getLogger("controleCadastro");
     public boolean CPF(String CPF){
