@@ -67,8 +67,7 @@ public class Cliente extends Pessoa{
     public String toString(){
          return super.toString()+"\n" + "Agencia:"+ Agencia +"\n"+ "Conta:"+conta +"\n"+
          "Data Criacção da conta:"+dataCriacaodaConta +"\n"+
-         "Tipo de conta:"+ this.TipoDeConta +"\n"+
-         contaCorrente;
+         "Tipo de conta:"+ this.TipoDeConta +"valor em conta:"+contaCorrente+"\n";
     }
 
 }

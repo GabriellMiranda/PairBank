@@ -16,8 +16,9 @@ public class ClienteDao {
         conexao = new Conexao();
         conn = conexao.getConnection();
     }
-
+ //Inserindo um cliente no banco de dados
     public void inserirCliente(Cliente cliente) throws SQLException {
+        controleContaCorrenteDao correnteDao = new controleContaCorrenteDao();
         String sql = "INSERT INTO cliente(cpf, nome, salario, datanascimento, agencia, conta, senha, datacriacaoconta, tipoconta)" +
                 "VALUES(?,?,?,?,?,?,?,?,?);";
         try{
@@ -32,12 +33,13 @@ public class ClienteDao {
             stmt.setString(8,cliente.getDataCriacaodaConta());
             stmt.setString(9,cliente.getTipodeConta());
             stmt.execute();
+            correnteDao.inserirContaCorrenteEmBD(0, cliente.getCpf());
         }catch (Exception e){
             System.err.println("Inserção Falhou"+e.getMessage());
         }
 
     }
-
+ //retornado um cliente do banco de dados
     public Cliente loginBD(String cpf, String senha1) throws SQLException {
 
         Cliente cliente = null;
@@ -62,7 +64,7 @@ public class ClienteDao {
         }
         return cliente;
     }
-
+   //verificando se o cliente existe no banco de dados
     public boolean clienteExiste(String cpf){
         try{
             String sql = "select cpf from cliente where CPF = ?;";
@@ -70,6 +72,7 @@ public class ClienteDao {
             stmt.setString(1, cpf);
             ResultSet p = stmt.executeQuery();
             if(p.next()){
+                //System.out.println("EXiste?"+p.getString("cpf"));
                 return Objects.equals(p.getString("cpf"), cpf);
             }
             return false;
@@ -79,7 +82,7 @@ public class ClienteDao {
         }
     }
 
-
+ //Retornado um cliente no banco de dados
     public Cliente retornaCliente(String cpf){
         Cliente cliente = null;
         try{

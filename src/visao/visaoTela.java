@@ -77,7 +77,7 @@ public class visaoTela {
             if(opcao == 1){ //Fazendo o saque na conta corrente
                 controle.sacar(cliente.contaCorrente);
             }else if(opcao == 2){//Fazendo o deposito na conta corrente
-                controle.depositar(cliente.contaCorrente);
+                controle.depositar(cliente.getCpf(), cliente.contaCorrente);
             }else if(opcao == 3){
                 this.fazerPix(viewCliente, cliente);
             }else if(opcao == 4){

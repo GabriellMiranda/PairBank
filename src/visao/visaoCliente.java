@@ -87,6 +87,7 @@ public class visaoCliente {
         System.out.println("4 - Fazer emprestimo");
         System.out.println("5 - Pagar Boleto");
         System.out.println("6 - Dados do usuario");
+        //verificar saldo
         System.out.println("7 - Sair");
         System.out.println("========================");
         System.out.print("Opcao: ");

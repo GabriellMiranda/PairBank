@@ -2,6 +2,7 @@ package visao;
 import controle.controleContaCorrente;
 import modelo.ContaCorrente;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,7 +27,7 @@ public class visaoContaCorrente {
             System.out.println("Não foi possivel efetuar este saque");
         }
     }
-    public void depositar(ContaCorrente contaCorrente){
+    public void depositar(String cpf, ContaCorrente conta) throws SQLException {
         double valor = 0;
         try {
             System.out.println("Digite o valor que voce deseja depositar");
@@ -37,12 +38,7 @@ public class visaoContaCorrente {
             scan.nextLine();// descarta a entrada errada do usuário
             return;
         }
-        if(controle.Deposito(valor, contaCorrente)){
-            System.out.println("Depósito efetuado com sucesso!");
-        }
-        else{
-            System.out.println("Não é possivel efetuar um depósito de um valor negativo!");
-        }
+        controle.Deposito(valor, cpf, conta);
     }
 
 }
