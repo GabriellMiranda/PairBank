@@ -27,7 +27,7 @@ public class VisaoContaCorrente {
             System.out.println("Não foi possivel efetuar este saque");
         }
     }
-    public void depositar(String cpf, ContaCorrente conta) throws SQLException {
+    public void depositar(String cpf, ContaCorrente conta) {
         double valor = 0;
         try {
             System.out.println("Digite o valor que voce deseja depositar");

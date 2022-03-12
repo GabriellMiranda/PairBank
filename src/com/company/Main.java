@@ -14,3 +14,7 @@ public class Main {
        tela.telaInicial();
     }
 }
+
+//invista mais tempo terminando a classe gerente faça isso para terminar as funcionalidades dele
+//coloque o numero do gerente na classe dele
+//opcao acessar numero do meu gerente

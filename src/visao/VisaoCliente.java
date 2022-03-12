@@ -3,6 +3,7 @@ package visao;
 import controle.ControleAgencia;
 import controle.ControleCadastro;
 import controle.ControleCliente;
+import controle.ControleContaCorrente;
 import modelo.Cliente;
 import modelo.Pessoa;
 
@@ -29,7 +30,7 @@ public class VisaoCliente {
         controleC = new ControleCadastro();
     }
 
-    public boolean cadastrarCliente() throws SQLException {
+    public boolean cadastrarCliente()  {
         String[] tiposDeConta = new String[]{"corrente","poupança"};
         VisaoPessoa pessoaview = new VisaoPessoa();
         System.out.println("Escolha uma senha:");
@@ -61,21 +62,21 @@ public class VisaoCliente {
         }
         return false;
     }
-
-    public Cliente loginCliente() throws SQLException {
+    // fazendo o login de um cliente
+    public Cliente loginCliente()  {
         System.out.println("Digite seu CPF:");
         String CPF = scan.next();
         System.out.println("Digite senha:");
         String senha = scan.next();
-        this.cliente = controleCli.login(CPF, senha);
+        this.cliente = controleCli.login(CPF, senha); //
         if (this.cliente == null) {
             LOGGER.info("Senha ou CPF incorretos!!");
-            return this.loginCliente();
+            return null;
         }
         LOGGER.info("Login efetuado com sucesso!");
         return this.cliente;
     }
-
+    //interface usuário falta implementa o saldo
     public int interfaceUsuario(){
         System.out.println("========================");
         System.out.println("1 - Sacar");
@@ -90,6 +91,62 @@ public class VisaoCliente {
         System.out.print("Opcao: ");
         return scanInt();
 
+    }
+   // menu cliente login
+    public void menuLoginCliente() {
+        int opcao;
+        double valor;
+        Cliente cliente = loginCliente();
+        if(cliente == null){
+            return;
+        }
+        VisaoContaCorrente controle = new VisaoContaCorrente();
+        while(true) {
+            opcao = interfaceUsuario();
+            if(opcao == 1){ //Fazendo o saque na conta corrente
+                controle.sacar(cliente.contaCorrente);
+            }else if(opcao == 2){//Fazendo o deposito na conta corrente
+                controle.depositar(cliente.getCpf(), cliente.contaCorrente);
+            }else if(opcao == 3){
+                this.fazerPix(cliente);
+            }else if(opcao == 4){
+                System.out.println("falta implementar");
+            }else if(opcao == 5) {
+                System.out.println("falta implementar");
+            }else if(opcao == 6){
+                System.out.println(cliente);
+            }else if(opcao == 7){
+                break;
+            }
+        }
+    }
+    public void fazerPix(Cliente cliente){
+        double valor = 0;
+        System.out.println("Digite o numero do CPF:");
+        String cpf = scan.next();
+        Cliente cliente1 = retonarCliente(cpf);
+        if(cliente1 == null){
+            System.out.println("CPF Invalido!!");
+            return;
+        }
+        try {
+            System.out.println("Digite o valor que você deseja transferir");
+            valor = scan.nextInt();
+        }
+        catch (InputMismatchException ime){
+            System.err.println("transferência invalida!!, digite apenas números");
+            scan.nextLine();
+            return;
+        }
+        ControleContaCorrente controle = new ControleContaCorrente();
+        boolean x = controle.pix(valor, cliente.contaCorrente);
+        if(x == true){
+            cliente1.contaCorrente.setValor(valor);
+            System.out.println("pix efetuado com sucesso!!");
+            return;
+        }else{
+            System.out.println("Você não tem saldo disponível!!");
+        }
     }
     public int scanInt(){
         try {

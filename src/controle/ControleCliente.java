@@ -19,7 +19,7 @@ public class ControleCliente {
 
 
     public boolean cadastroCliente(String agencia, String conta, String senha, String tipodeconta,String nome, String cpf, int diaNascimento,int mesNascimento,int anoNascimento, int diaCriacao,
-                                              int mesCriacao,int anoCriacao) throws SQLException {
+                                              int mesCriacao,int anoCriacao) {
 
        if(clienteDao.clienteExiste(cpf)){
            LOGGER.info("CLiente já existente no banco de dados");
@@ -34,7 +34,7 @@ public class ControleCliente {
         return Integer.toString(numConta);
     }
 
-    public Cliente login(String CPF,String senha) throws SQLException {
+    public Cliente login(String CPF,String senha) {
         return clienteDao.loginBD(CPF, senha);
     }
 

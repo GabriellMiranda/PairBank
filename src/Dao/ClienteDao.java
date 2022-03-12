@@ -17,7 +17,7 @@ public class ClienteDao {
         conn = conexao.getConnection();
     }
  //Inserindo um cliente no banco de dados
-    public void inserirCliente(Cliente cliente) throws SQLException {
+    public void inserirCliente(Cliente cliente)  {
         ControleContaCorrenteDao correnteDao = new ControleContaCorrenteDao();
         String sql = "INSERT INTO cliente(cpf, nome, salario, datanascimento, agencia, conta, senha, datacriacaoconta, tipoconta)" +
                 "VALUES(?,?,?,?,?,?,?,?,?);";

@@ -11,7 +11,7 @@ public class ControleCadastro {
     public boolean SENHA(String senha){
         return this.validaSenha(senha);
     }
-
+    //validando a senha do usuário que deve ter ao menos 8 dígitos e 1 letra maiuscula e 1 número
     private boolean validaSenha(String senha){
         String[] aux = senha.split("");
         if(aux.length < 8){

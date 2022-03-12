@@ -13,7 +13,7 @@ public class ControleContaCorrente {
     public ContaCorrente newContaCorrente(double valor){
         return new ContaCorrente(valor);
     }
-    public void Deposito(double valor, String cpf, ContaCorrente conta) throws SQLException {
+    public void Deposito(double valor, String cpf, ContaCorrente conta) {
         if(valor < 0){
             System.err.println("Não se pode depositar valores negativos!!");
             return;
