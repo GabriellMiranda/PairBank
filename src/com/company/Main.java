@@ -15,6 +15,8 @@ public class Main {
     }
 }
 
-//invista mais tempo terminando a classe gerente faça isso para terminar as funcionalidades dele
-//coloque o numero do gerente na classe dele
-//opcao acessar numero do meu gerente
+
+
+//opcao acessar numero do meu gerente para os clientes
+//termine a classe controle gerente
+

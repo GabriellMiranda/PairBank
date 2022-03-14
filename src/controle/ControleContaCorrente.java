@@ -28,11 +28,16 @@ public class ControleContaCorrente {
         conta.setValor(conta.getValor() - valor);
         return true;
     }
-    public boolean pix(double valor, ContaCorrente conta){
+    public boolean subtraiValor(double valor, String cpf, ContaCorrente conta){
         if(conta.getValor() == 0 || conta.getValor() < valor || valor <= 0){
             return false;
         }
         conta.setValor(conta.getValor() - valor);
+        correnteDao.subtraiValor(valor, cpf);
         return true;
+    }
+
+    public void efetuarPix(double valor, String cpf){
+        correnteDao.adcionaValor(valor, cpf);
     }
 }

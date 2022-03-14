@@ -31,7 +31,8 @@ public class GerenteDao {
                         p.getString("numeroAgencia"),
                         p.getString("nome"),
                         1, 1, 1999,
-                        p.getString("senha"));
+                        p.getString("senha"),
+                        p.getString("numeroTelefone"));
             }
         }catch (Exception e) {
             System.err.println("Erro!! CPF ou SENHA Invalidos");
@@ -40,23 +41,24 @@ public class GerenteDao {
     }
 
     //Listando clientes do banco de dados
-    public void listarClientesBd(){
+    public void listarClientesBd(String numeroAgencia){
         try{
-            String sql = "select * from cliente where CPF = ?;";
+            String sql = "select * from cliente WHERE agencia = ?;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            stmt.setString(1, numeroAgencia);
             ResultSet p = stmt.executeQuery();
-            System.out.println("====== Dados dos clientes =====");
-            if(p.next()){
+            System.out.println("====== Dados dos clientes da Agencia =====");
+            while(p.next()){
                 System.out.println("==================================");
                 System.out.println(
-                        p.getString("agencia") + "\n" +
-                        p.getString("conta") + "\n" +
-                        p.getString("senha") + "\n" +
-                        p.getString("tipoConta") + "\n" +
-                        p.getString("nome") + "\n" +
-                        p.getString("CPF") + "\n" +
-                        p.getString("dataCriacaoConta") + "\n" +
-                        p.getString("salario")
+                       "Agencia: " + p.getString("agencia") + "\n" +
+                       "Conta: " + p.getString("conta") + "\n" +
+                       "Tipo de conta:" + p.getString("tipoConta") + "\n" +
+                        "Nome:" +p.getString("nome") + "\n" +
+                       "CPF: " + p.getString("CPF") + "\n" +
+                       "Criação da conta: " +p.getString("dataCriacaoConta") + "\n" +
+                       "Data de Nascimento: " +p.getString("dataNascimento")+ "\n" +
+                       "Salario: " +p.getString("salario")
                 );
                 System.out.println("==================================");
             }
@@ -67,7 +69,26 @@ public class GerenteDao {
         }
     }
     //Verificar o saldo de um determinado cliente no banco de dados
-    public void verificarSaldoCliente(){
+    public void verificarSaldoCliente(String cpf, String agencia){
+        try {
+            String sql = "select * from cliente as c JOIN contaCorrente as co ON c.CPF = co.CPFC where c.CPF = ? AND c.agencia = ?;";
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            stmt.setString(1, cpf);
+            stmt.setString(2, agencia);
+            ResultSet p = stmt.executeQuery();
+            if (p.next()){
+                System.out.println(
+                       "CPF:" + p.getString("CPF")  + "\n" +
+                        "Numero Agencia:" + p.getString("numeroAgencia")  + "\n" +
+                        "Nome:" + p.getString("nome")  + "\n" +
+                        "Valor na Conta Corrente:" + p.getDouble("valorCorrente")
+                        );
+                System.out.println("Consulta realizada com sucesso!!");
+            }
+
+        }catch (Exception e) {
+            System.err.println("Erro!! CPF Invalido");
+        }
 
     }
     // Cancelando a conta de um cliente

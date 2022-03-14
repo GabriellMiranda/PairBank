@@ -48,12 +48,12 @@ public class ClienteDao {
 
         Cliente cliente = null;
         try {
-            String sql = "select * from cliente where CPF = ? AND senha = ?;";
+            String sql = "select * from cliente NATURAL JOIN contacorrente where CPF = ? AND senha = ?;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
             stmt.setString(1, cpf);
             stmt.setString(2, senha1);
             ResultSet p = stmt.executeQuery();
-            while (p.next()){
+            if (p.next()){
                 cliente = new Cliente(p.getString("agencia"),
                 p.getString("conta"),
                 p.getString("senha"),
@@ -62,6 +62,8 @@ public class ClienteDao {
                 p.getString("CPF"),
                 1,1,1999,
                 1,1,2020);
+                cliente.contaCorrente.setValor(p.getDouble("valorCorrente"));
+                System.out.println("valor da conta corrente" + p.getDouble("valorCorrente"));
             }
         }catch (Exception e) {
             System.err.println("Erro!! CPF ou SENHA Invalidos");

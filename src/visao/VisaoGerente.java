@@ -38,15 +38,12 @@ public class VisaoGerente {
             System.err.println("Valor digitado incorreto");
             return null;
         }
-
-
-
-
     }
 
     //menu para acesso as funções do gerente
     public int menuGerente(){
         System.out.println("========================");
+        System.out.println("0 - Sair");
         System.out.println("1 - Listar Clientes");
         System.out.println("2 - Verificar saldo de um cliente");
         System.out.println("3 - Cancelar conta cliente");
@@ -54,7 +51,6 @@ public class VisaoGerente {
         System.out.println("5 - Listar Agencias");
         System.out.println("6 - Dados do Gerente");
         System.out.println("7 - Criar uma nova agencia");
-        System.out.println("8 - Sair");
         System.out.println("========================");
         try {
             System.out.println("Opção: ");
@@ -76,10 +72,15 @@ public class VisaoGerente {
         }
         while(true) {
             opcao = menuGerente();
-            if(opcao == 1){ //
-                System.out.println("falta implementar");
+            if(opcao == 0){
+                break;
+            }
+            else if(opcao == 1){ //
+                controleGerente.listarClientes(gerente1.getNumeroAgencia());
             }else if(opcao == 2){//
-                System.out.println("falta implementar");
+                System.out.println("Digite o CPF do cliente:");
+                String cpf = scan.next();
+                controleGerente.verificarSaldoCliente(cpf, gerente1.getNumeroAgencia());
             }else if(opcao == 3){
                 System.out.println("falta implementar");
             }else if(opcao == 4){
@@ -87,11 +88,9 @@ public class VisaoGerente {
             }else if(opcao == 5) {
                 System.out.println("falta implementar");
             }else if(opcao == 6){
-                System.out.println("falta implementar");
-            }else if(opcao == 7){
                 System.out.println(gerente1);
-            }else if(opcao == 8){
-                 break;
+            }else if(opcao == 7){
+                System.out.println("falta implementar");
             }
         }
     }

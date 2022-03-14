@@ -42,4 +42,7 @@ public class ControleCliente {
         return clienteDao.retornaCliente(cpf);
     }
 
+    public boolean verificandoExistenciaCliente(String CPF) {
+       return clienteDao.clienteExiste(CPF);
+    }
 }

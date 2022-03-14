@@ -58,4 +58,31 @@ public class ControleContaCorrenteDao {
         }
     }
 
+    public void adcionaValor(double valor, String cpf){
+        try{
+            String sql = "UPDATE contaCorrente" +
+                    " SET valorCorrente = valorCorrente + ? where CPFC = ?;";
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            stmt.setDouble(1, valor);
+            stmt.setString(2, cpf);
+            stmt.executeLargeUpdate(); // com essa função eu consigo pegar o valor que já estava no banco de dados e somar um valor nele
+            System.out.println("Deposito efetuado com sucesso!!");
+        }catch (SQLException ee){
+            System.err.println("Não foi possível efetuar o deposito!!"+ee.getMessage());
+        }
+    }
+
+    public void subtraiValor(double valor, String cpf){
+        try{
+            String sql = "UPDATE contaCorrente" +
+                    " SET valorCorrente = valorCorrente - ? where CPFC = ?;";
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            stmt.setDouble(1, valor);
+            stmt.setString(2, cpf);
+            stmt.executeLargeUpdate(); // com essa função eu consigo pegar o valor que já estava no banco de dados e somar um valor nele
+        }catch (SQLException ee){
+            System.err.println("Error conta sem saldo!!"+ee.getMessage());
+        }
+    }
+
 }
