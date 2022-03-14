@@ -16,7 +16,7 @@ public class GerenteDao {
         conexao = new Conexao();
         conn = conexao.getConnection();
     }
-
+   //inserir gerente
     public Gerente logiGerenteBd(String cpf, String senha1){
         Gerente gerente = null;
         try {

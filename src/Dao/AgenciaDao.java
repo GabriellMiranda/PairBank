@@ -28,6 +28,7 @@ public class AgenciaDao {
             stmt.setString(2, agencia.getNumero());
             stmt.setString(3,agencia.getNomeGerente());
             stmt.execute();
+            //inserir gerente()
             return true;
         }catch (Exception e){
             System.err.println("Inserção Falhou"+e.getMessage());

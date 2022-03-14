@@ -83,7 +83,7 @@ public class VisaoCliente {
         System.out.println("1 - Sacar");
         System.out.println("2 - Depositar");
         System.out.println("3 - pix");
-        System.out.println("4 - Fazer emprestimo");
+        System.out.println("4 - Simular emprestimo");
         System.out.println("5 - Dados do usuario e saldo");
         System.out.println("6 - Extrato");
         System.out.println("7 - infomações e dúvidas");
@@ -121,7 +121,7 @@ public class VisaoCliente {
                 //vou criar uma lista com os dados e toda vez que o usuário digitar essa opção atualizo essa lista no bd
                 System.out.println("falta implementar");
             }else if(opcao == 7){
-                System.out.println("falta implementar");
+              //retornar o número do gerente para qualquer dúvida do usuário
             }
         }
     }
