@@ -2,17 +2,17 @@ package modelo;
 
 import java.util.Calendar;
 
-public class Pessoa {
-    private String nome, cpf, rg;
+public class Pessoa{
+    private String nome, cpf;
     private Data dataNascimento;
     private double salario;
 
-    public Pessoa(String nome, String cpf, String rg, int diaNascimento,int mesNascimento,int anoNascimento){
+    public Pessoa(String nome, String cpf, int diaNascimento,int mesNascimento,int anoNascimento){
         this.nome = nome;
         this.cpf = cpf;
-        this.rg = rg;
         this.dataNascimento = new Data(diaNascimento,mesNascimento,anoNascimento);
     }
+
     public String getNome(){
         return this.nome;
     }
@@ -22,9 +22,14 @@ public class Pessoa {
     public String getCpf(){
         return this.cpf;
     }
-    public String getRg(){
-        return this.rg;
+
+    public double getSalario() {
+        return salario;
     }
+
+    public int getDiaNascimento(){return this.dataNascimento.getDia();}
+    public int getMesNascimento(){return this.dataNascimento.getMes();}
+    public int getAnoNascimento(){return this.dataNascimento.getAno();}
     public int getIdade(){
         Calendar cal =  Calendar.getInstance();
         int anoAtual = cal.get(Calendar.YEAR);
@@ -38,10 +43,9 @@ public class Pessoa {
         }
     }
     public String toString(){
-        return "Nome:"+getNome()+"\n"+
+        return "\nNome:"+getNome()+"\n"+
         "Idade:"+getIdade()+"\n"+
         "CPF:"+getCpf()+"\n"+
-        "RG:"+getRg()+"\n"+
         "Data de Nascimento:"+getDataNascimento()+"\n";
     }
 }

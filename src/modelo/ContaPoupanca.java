@@ -1,18 +1,17 @@
 package modelo;
 
-import java.awt.*;
-
-public class ContaPoupanca {
+public class ContaPoupanca extends Conta {
     private double valorPoupanca;
 
     public ContaPoupanca(double valor){
         this.valorPoupanca = valor;
     }
-    public double getValorPoupanca(){
+    @Override
+    public double getValor(){
         return this.valorPoupanca;
     }
-
-    public void setValorPoupanca(double valor){
+    @Override
+    public void setValor(double valor){
         this.valorPoupanca = valor;
     }
 

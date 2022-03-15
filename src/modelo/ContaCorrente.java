@@ -1,15 +1,15 @@
 package modelo;
 
-public class ContaCorrente {
+public class ContaCorrente extends Conta{
     private double ValorCorrente;
 
     public ContaCorrente(double valor){this.ValorCorrente = valor;}
-
-    public double getValorCorrente(){
+    @Override
+    public double getValor(){
         return this.ValorCorrente;
     }
-
-    public void setValorCorrente(double valor){
+    @Override
+    public void setValor(double valor){
         this.ValorCorrente = valor;
     }
 

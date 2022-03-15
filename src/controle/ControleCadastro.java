@@ -1,10 +1,9 @@
 package controle;
-import modelo.Cliente;
-import modelo.Pessoa;
-import modelo.Administrador;
+import java.util.logging.Logger;
 
+public class ControleCadastro {
 
-public class controleCadastro {
+    private static final Logger LOGGER = Logger.getLogger("controleCadastro");
     public boolean CPF(String CPF){
         return this.validaCPF(CPF);
     }
@@ -12,11 +11,11 @@ public class controleCadastro {
     public boolean SENHA(String senha){
         return this.validaSenha(senha);
     }
-
+    //validando a senha do usuário que deve ter ao menos 8 dígitos e 1 letra maiuscula e 1 número
     private boolean validaSenha(String senha){
         String[] aux = senha.split("");
         if(aux.length < 8){
-            System.out.print("\nPara a segurança do sistema, a senha deve possuir 8 digitos!\n");
+            LOGGER.warning("\nPara a segurança do sistema, a senha deve possuir 8 digitos!\n");
             return false;
         }
         else {
@@ -35,15 +34,15 @@ public class controleCadastro {
                 }
             }
             if(qtdLetrasMaiusculas == 0 && qtdLetras>0){
-                System.out.println("\nPara a segurança do sistema, a senha deve possuir ao menos uma letra maiúscula!");
+                LOGGER.warning("\nPara a segurança do sistema, a senha deve possuir ao menos uma letra maiúscula!\n");
                 return false;
             }
             else if(qtdNumeros == 0){
-                System.out.println("\nPara a segurança do sistema, a senha deve possuir ao menos um numero!");
+                LOGGER.warning("\nPara a segurança do sistema, a senha deve possuir ao menos um numero!\n");
                 return false;
             }
             else if(qtdLetras == 0){
-                System.out.println("\nPara a segurança do sistema, a senha deve possuir ao menos uma letra!");
+                LOGGER.warning("\nPara a segurança do sistema, a senha deve possuir ao menos uma letra!\n");
                 return false;
             }
             else{
