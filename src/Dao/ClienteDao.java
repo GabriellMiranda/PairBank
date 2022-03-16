@@ -2,7 +2,7 @@ package Dao;
 
 import conexao.Conexao;
 import modelo.Cliente;
-
+import modelo.Data;
 import java.sql.*;
 import java.util.Objects;
 
@@ -10,6 +10,7 @@ public class ClienteDao {
     private Conexao conexao;
     private Connection conn;
     private Statement statement;
+
 
     //Criando o construtor da classe, fazendo a conexão com o banco de dados
     public ClienteDao(){
@@ -47,6 +48,7 @@ public class ClienteDao {
     public Cliente loginBD(String cpf, String senha1) throws SQLException {
 
         Cliente cliente = null;
+        Data data = new Data(0,0,0);
         try {
             String sql = "select * from cliente NATURAL JOIN contacorrente where CPF = ? AND senha = ?;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
@@ -60,8 +62,8 @@ public class ClienteDao {
                 p.getString("tipoConta"),
                 p.getString("nome"),
                 p.getString("CPF"),
-                1,1,1999,
-                1,1,2020);
+                data.getDiaFromString(p.getString("dataNascimento")),data.getMesFromString(p.getString("dataNascimento")), data.getAnoFromString(p.getString("dataNascimento")),
+                data.getDiaFromString(p.getString("dataCriacaoConta")), data.getMesFromString(p.getString("dataCriacaoConta")), data.getAnoFromString(p.getString("dataCriacaoConta")));
                 cliente.contaCorrente.setValor(p.getDouble("valorCorrente"));
                 System.out.println("valor da conta corrente" + p.getDouble("valorCorrente"));
             }
@@ -91,6 +93,7 @@ public class ClienteDao {
  //Retornado um cliente no banco de dados
     public Cliente retornaCliente(String cpf){
         Cliente cliente = null;
+        Data data = new Data(0,0,0);
         try{
             String sql = "select * from cliente where CPF = ?;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
@@ -103,8 +106,8 @@ public class ClienteDao {
                 p.getString("tipoConta"),
                 p.getString("nome"),
                 p.getString("CPF"),
-                1,1,1999, //depois vamos ajeitar
-                1,1,2020);
+                data.getDiaFromString(p.getString("dataNascimento")),data.getMesFromString(p.getString("dataNascimento")), data.getAnoFromString(p.getString("dataNascimento")),
+                data.getDiaFromString(p.getString("dataCriacaoConta")), data.getMesFromString(p.getString("dataCriacaoConta")), data.getAnoFromString(p.getString("dataCriacaoConta")));
             }
             return cliente;
         }catch (SQLException ee){
@@ -112,7 +115,4 @@ public class ClienteDao {
             return null;
         }
     }
-
-
-
 }

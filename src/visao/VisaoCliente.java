@@ -1,9 +1,6 @@
 package visao;
 
-import controle.ControleAgencia;
-import controle.ControleCadastro;
-import controle.ControleCliente;
-import controle.ControleContaCorrente;
+import controle.*;
 import modelo.Cliente;
 import modelo.Pessoa;
 
@@ -21,6 +18,7 @@ public class VisaoCliente {
     private ControleCliente controleCli;
     private ControleAgencia controleAg;
     private ControleCadastro controleC;
+    private ControleGerente controleG;
     private static final Logger LOGGER = Logger.getLogger("visaoCliente");
 
     public VisaoCliente(){
@@ -28,6 +26,7 @@ public class VisaoCliente {
         controleCli = new ControleCliente();
         controleAg = new ControleAgencia();
         controleC = new ControleCadastro();
+        controleG = new ControleGerente();
     }
 
     public boolean cadastrarCliente()  {
@@ -121,7 +120,8 @@ public class VisaoCliente {
                 //vou criar uma lista com os dados e toda vez que o usuário digitar essa opção atualizo essa lista no bd
                 System.out.println("falta implementar");
             }else if(opcao == 7){
-              //retornar o número do gerente para qualquer dúvida do usuário
+              String[] info = controleG.obterInfoGerente(this.cliente.getAgencia()).split("-");
+                System.out.println("Para resolver qualquer problema, conusulte seu gerente "+info[0] +" no telefone: "+info[1]);
             }
         }
     }

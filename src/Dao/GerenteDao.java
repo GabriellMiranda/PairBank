@@ -2,6 +2,7 @@ package Dao;
 
 import conexao.Conexao;
 import modelo.Cliente;
+import modelo.Data;
 import modelo.Gerente;
 
 import java.sql.*;
@@ -19,6 +20,7 @@ public class GerenteDao {
    //inserir gerente
     public Gerente logiGerenteBd(String cpf, String senha1){
         Gerente gerente = null;
+        Data data = new Data(0,0,0);
         try {
             String sql = "select * from gerente where CPF = ? AND senha = ? ;";
             PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
@@ -28,11 +30,11 @@ public class GerenteDao {
             while (p.next()){
                 System.out.println("ou");
                 gerente = new Gerente(p.getString("CPF"),
-                        p.getString("numeroAgencia"),
-                        p.getString("nome"),
-                        1, 1, 1999,
-                        p.getString("senha"),
-                        p.getString("numeroTelefone"));
+                p.getString("numeroAgencia"),
+                p.getString("nome"),
+                data.getDiaFromString(p.getString("dataNascimento")), data.getMesFromString(p.getString("dataNascimento")), data.getAnoFromString(p.getString("dataNascimento")),
+                p.getString("senha"),
+                p.getString("numeroTelefone"));
             }
         }catch (Exception e) {
             System.err.println("Erro!! CPF ou SENHA Invalidos");
@@ -91,6 +93,39 @@ public class GerenteDao {
         }
 
     }
+
+    public String obterNumGerente(String numeroAgencia){
+        String numeroGerente = null;
+        try {
+            String sql = "select numeroTelefone from gerente where gerente.numeroAgencia = ?;";
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            stmt.setString(1, numeroAgencia);
+            ResultSet p = stmt.executeQuery();
+            while (p.next()){
+                numeroGerente =  p.getString("numeroTelefone");
+            }
+        }catch (Exception e) {
+            System.err.println("Erro!! CPF ou SENHA Invalidos");
+        }
+        return numeroGerente;
+    }
+
+    public String obterNomeGerente(String numeroAgencia){
+        String nomeGerente = null;
+        try {
+            String sql = "select nome from gerente where gerente.numeroAgencia = ?;";
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            stmt.setString(1, numeroAgencia);
+            ResultSet p = stmt.executeQuery();
+            while (p.next()){
+                nomeGerente =  p.getString("nome");
+            }
+        }catch (Exception e) {
+            System.err.println("Erro!! CPF ou SENHA Invalidos");
+        }
+        return nomeGerente;
+    }
+
     // Cancelando a conta de um cliente
     public void cancelarContaCliente(){
 
