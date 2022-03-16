@@ -19,6 +19,7 @@ public class VisaoCliente {
     private ControleAgencia controleAg;
     private ControleCadastro controleC;
     private ControleGerente controleG;
+    private ControleContaCorrente contaCorrente;
     private static final Logger LOGGER = Logger.getLogger("visaoCliente");
 
     public VisaoCliente(){
@@ -27,6 +28,7 @@ public class VisaoCliente {
         controleAg = new ControleAgencia();
         controleC = new ControleCadastro();
         controleG = new ControleGerente();
+        contaCorrente = new ControleContaCorrente();
     }
 
     public boolean cadastrarCliente()  {
@@ -113,7 +115,19 @@ public class VisaoCliente {
             }else if(opcao == 3){// fazer pix para outro usuário
                 this.fazerPix(cliente);
             }else if(opcao == 4){ // fazer emprestimo
-                System.out.println("falta implementar");
+                double emprestimoObtido = controleCli.simularEmprestimo(cliente);
+                System.out.println("Caro cliente, o seu emprestimo foi aprovado no valor de "+emprestimoObtido);
+                System.out.println("Deseja receber o emprestimo em sua conta ? (s/n)");
+                String opt = scan.nextLine();
+                if(opt.equals("s")){
+                    contaCorrente.Deposito(emprestimoObtido,cliente.getCpf(),cliente.contaCorrente);
+                }
+                else if(opt.equals("n")){
+                    System.out.println("É uma pena que não queira esta regalia, espero que dê tudo certo!");
+                }
+                else{
+                    System.err.println("Opção inválida!");
+                }
             }else if(opcao == 5) {// dados do usuário e seu saldo
                 System.out.println(cliente);
             }else if(opcao == 6) {// extrato bancario
@@ -121,7 +135,7 @@ public class VisaoCliente {
                 System.out.println("falta implementar");
             }else if(opcao == 7){
               String[] info = controleG.obterInfoGerente(this.cliente.getAgencia()).split("-");
-                System.out.println("Para resolver qualquer problema, conusulte seu gerente "+info[0] +" no telefone: "+info[1]);
+              System.out.println("Para resolver qualquer problema, conusulte seu gerente "+info[0] +" no telefone: "+info[1]);
             }
         }
     }

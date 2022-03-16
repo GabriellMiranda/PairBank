@@ -33,7 +33,9 @@ public class ControleCliente {
         int numConta = 5;
         return Integer.toString(numConta);
     }
-
+    public double simularEmprestimo(Cliente cli){
+        return cli.getSalario() + cli.getSalario()*0.1;
+    }
     public Cliente login(String CPF,String senha) {
         return clienteDao.loginBD(CPF, senha);
     }
