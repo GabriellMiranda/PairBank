@@ -3,10 +3,8 @@ package Dao;
 import conexao.Conexao;
 import modelo.Agencia;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.Random;
 
 public class AgenciaDao {
     private Conexao conexao;
@@ -34,6 +32,24 @@ public class AgenciaDao {
             System.err.println("Inserção Falhou"+e.getMessage());
             return false;
         }
+    }
 
+    public String obterAgencia(){
+        String numeroAgencia = null;
+        try {
+            Random aleatorio = new Random();
+            String sql = "select numero from agencia;";
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            ResultSet p = stmt.executeQuery();
+            int pos = 0;
+            int num = aleatorio.nextInt(p.getFetchSize()+1);
+            while (p.next()){
+                if(pos == num){ numeroAgencia =  p.getString("numero");break;}
+                pos++;
+            }
+        }catch (Exception e) {
+            System.err.println("Erro ao tentar obter uma agencia");
+        }
+        return numeroAgencia;
     }
 }

@@ -105,7 +105,7 @@ public class GerenteDao {
                 numeroGerente =  p.getString("numeroTelefone");
             }
         }catch (Exception e) {
-            System.err.println("Erro!! CPF ou SENHA Invalidos");
+            System.err.println("Erro ao tentar obter o numero de telefone do gerente");
         }
         return numeroGerente;
     }
@@ -121,7 +121,7 @@ public class GerenteDao {
                 nomeGerente =  p.getString("nome");
             }
         }catch (Exception e) {
-            System.err.println("Erro!! CPF ou SENHA Invalidos");
+            System.err.println("Erro ao tentar obter o nome do gerente");
         }
         return nomeGerente;
     }
