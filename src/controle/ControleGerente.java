@@ -31,6 +31,7 @@ public class ControleGerente {
     public void listarClientes(String agencia){
         gerenteDao.listarClientesBd(agencia);
     }
+
     //um cliente liga para um gerente ele atende e fala o saldo atual dela
     public void verificarSaldoCliente(String cpf, String agencia){
         gerenteDao.verificarSaldoCliente(cpf, agencia);

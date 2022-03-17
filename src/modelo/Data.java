@@ -37,6 +37,6 @@ public class Data{
     }
 
     public String toString(){
-        return Integer.toString(this.dia) + "/" + Integer.toString(this.mes) + "/" + Integer.toString(this.ano);
+        return Integer.toString(this.ano) + "-" + Integer.toString(this.mes) + "-" + Integer.toString(this.dia);
     }
 }

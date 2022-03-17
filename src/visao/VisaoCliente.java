@@ -56,7 +56,8 @@ public class VisaoCliente {
                 String dia = new SimpleDateFormat("dd").format(dataHoraAtual);
                 String mes = new SimpleDateFormat("MM").format(dataHoraAtual);
                 String ano = new SimpleDateFormat("yyyy").format(dataHoraAtual);
-                return controleCli.cadastroCliente(controleAg.getAgencia(), controleCli.getNewNumConta(), senha, tiposDeConta[opcao-1], nova.getNome(), nova.getCpf(),
+                String numeroAgencia = controleAg.getAgencia();
+                return controleCli.cadastroCliente(numeroAgencia, controleCli.getNewNumConta(numeroAgencia), senha, tiposDeConta[opcao-1], nova.getNome(), nova.getCpf(),
                         nova.getDiaNascimento(), nova.getMesNascimento(), nova.getAnoNascimento(),
                         Integer.parseInt(dia), Integer.parseInt(mes), Integer.parseInt(ano));
             }
@@ -118,7 +119,7 @@ public class VisaoCliente {
                 double emprestimoObtido = controleCli.simularEmprestimo(cliente);
                 System.out.println("Caro cliente, o seu emprestimo foi aprovado no valor de "+emprestimoObtido);
                 System.out.println("Deseja receber o emprestimo em sua conta ? (s/n)");
-                String opt = scan.nextLine();
+                String opt = scan.next();
                 if(opt.equals("s")){
                     contaCorrente.Deposito(emprestimoObtido,cliente.getCpf(),cliente.contaCorrente);
                 }

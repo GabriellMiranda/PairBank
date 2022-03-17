@@ -52,4 +52,19 @@ public class AgenciaDao {
         }
         return numeroAgencia;
     }
+    public String obterMAXagencia(){
+        String numero = null;
+        try {
+            Random aleatorio = new Random();
+            String sql = "select MAX(numero) as maior from agencia;";
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            ResultSet p = stmt.executeQuery();
+            while (p.next()){
+                numero = p.getString("maior");
+            }
+        }catch (Exception e) {
+            System.err.println("Erro ao tentar obter uma agencia");
+        }
+        return numero;
+    }
 }

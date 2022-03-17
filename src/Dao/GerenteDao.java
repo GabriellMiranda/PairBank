@@ -18,6 +18,26 @@ public class GerenteDao {
         conn = conexao.getConnection();
     }
    //inserir gerente
+    public boolean inserirGerente(Gerente gerente){
+        String sql = "INSERT INTO gerente(cpf, nome, dataNascimento,senha,numeroAgencia,numeroTelefone)" +
+                "VALUES(?,?,?,?,?,?)";
+        try{
+            PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
+            stmt.setString(1,gerente.getCPF());
+            stmt.setString(2, gerente.getNome());
+            stmt.setString(3, gerente.getDataNascimento());
+            stmt.setString(4, gerente.getSenha());
+            stmt.setString(5, gerente.getNumeroAgencia());
+            stmt.setString(6, gerente.getNumeroGerente());
+            stmt.execute();
+            return true;
+        }catch (Exception e){
+            System.err.println("Inserção Falhou"+e.getMessage());
+            return false;
+        }
+    }
+
+
     public Gerente logiGerenteBd(String cpf, String senha1){
         Gerente gerente = null;
         Data data = new Data(0,0,0);

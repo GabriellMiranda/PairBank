@@ -65,7 +65,7 @@ public class ClienteDao {
                 data.getDiaFromString(p.getString("dataNascimento")),data.getMesFromString(p.getString("dataNascimento")), data.getAnoFromString(p.getString("dataNascimento")),
                 data.getDiaFromString(p.getString("dataCriacaoConta")), data.getMesFromString(p.getString("dataCriacaoConta")), data.getAnoFromString(p.getString("dataCriacaoConta")));
                 cliente.contaCorrente.setValor(p.getDouble("valorCorrente"));
-                System.out.println("valor da conta corrente" + p.getDouble("valorCorrente"));
+                cliente.setSalario(p.getDouble("salario"));
             }
         }catch (Exception e) {
             System.err.println("Erro!! CPF ou SENHA Invalidos");

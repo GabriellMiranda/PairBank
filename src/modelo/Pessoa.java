@@ -23,6 +23,10 @@ public class Pessoa{
         return this.cpf;
     }
 
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
     public double getSalario() {
         return salario;
     }
