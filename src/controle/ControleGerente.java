@@ -17,7 +17,7 @@ public class ControleGerente {
         return gerenteDao.obterNomeGerente(numeroAgencia) + "-" + gerenteDao.obterNumGerente(numeroAgencia);
     }
     public Gerente cadastroGerente(String nome, String cpf, String rg, int diaNascimento, int mesNascimento, int anoNascimento, String senha, String numeroGerente){
-        if(this.validar.CPF(cpf) && this.validar.SENHA(senha)){
+        if(this.validar.CPF(cpf) && this.validar.SENHA(senha.split(""))){
             return new Gerente(nome,cpf,rg,diaNascimento,mesNascimento,anoNascimento,senha, numeroGerente);
         }
         return null;

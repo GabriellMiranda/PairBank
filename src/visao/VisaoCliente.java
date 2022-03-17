@@ -36,7 +36,7 @@ public class VisaoCliente {
         VisaoPessoa pessoaview = new VisaoPessoa();
         System.out.println("Escolha uma senha:");
         String senha = scan.nextLine();
-        if(controleC.SENHA(senha)) {
+        if(controleC.SENHA(senha.split(""))) {
             System.out.println("Escolha o tipo de conta |||  OP[1]: Corrente | OP[2]: Poupança:"); // exceção
             System.out.print("OP: ");
             int opcao = scanInt();
@@ -57,7 +57,7 @@ public class VisaoCliente {
                 String mes = new SimpleDateFormat("MM").format(dataHoraAtual);
                 String ano = new SimpleDateFormat("yyyy").format(dataHoraAtual);
                 String numeroAgencia = controleAg.getAgencia();
-                return controleCli.cadastroCliente(numeroAgencia, controleCli.getNewNumConta(numeroAgencia), senha, tiposDeConta[opcao-1], nova.getNome(), nova.getCpf(),
+                return controleCli.cadastroCliente(0,numeroAgencia, controleCli.getNewNumConta(numeroAgencia), senha, tiposDeConta[opcao-1], nova.getNome(), nova.getCpf(),
                         nova.getDiaNascimento(), nova.getMesNascimento(), nova.getAnoNascimento(),
                         Integer.parseInt(dia), Integer.parseInt(mes), Integer.parseInt(ano));
             }

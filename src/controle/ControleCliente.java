@@ -18,14 +18,16 @@ public class ControleCliente {
     }
 
 
-    public boolean cadastroCliente(String agencia, String conta, String senha, String tipodeconta,String nome, String cpf, int diaNascimento,int mesNascimento,int anoNascimento, int diaCriacao,
+    public boolean cadastroCliente(double salario,String agencia, String conta, String senha, String tipodeconta,String nome, String cpf, int diaNascimento,int mesNascimento,int anoNascimento, int diaCriacao,
                                               int mesCriacao,int anoCriacao) {
 
        if(clienteDao.clienteExiste(cpf)){
            LOGGER.info("CLiente já existente no banco de dados");
            return false;
        }
-       clienteDao.inserirCliente(new Cliente(agencia,conta,senha,tipodeconta,nome,cpf,diaNascimento,mesNascimento,anoNascimento,diaCriacao, mesCriacao,anoCriacao));
+       Cliente cliente = new Cliente(agencia,conta,senha,tipodeconta,nome,cpf,diaNascimento,mesNascimento,anoNascimento,diaCriacao, mesCriacao,anoCriacao);
+       cliente.setSalario(salario);
+       clienteDao.inserirCliente(cliente);
        return true;
     }
     public String getNewNumConta(){

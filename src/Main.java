@@ -1,6 +1,3 @@
-package com.company;
-
-
 import Dao.ClienteDao;
 import visao.VisaoTela;
 
@@ -11,8 +8,7 @@ import java.util.logging.Logger;
 public class Main {
     private static final Logger LOGGER = Logger.getLogger("PairBank");
     public static void main(String[] args) throws FileNotFoundException, SQLException {
-       VisaoTela tela = new VisaoTela();
-       tela.telaInicial();
+        TelaLogin login = new TelaLogin();
     }
 }
 
