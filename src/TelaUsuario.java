@@ -72,6 +72,27 @@ public class TelaUsuario extends JFrame{
                 new TelaSaque(cliente);
             }
         });
+        emprestimoButton.addActionListener(new ActionListener() {// ir para a tela de pegar o empréstimo
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new TelaEmprestimo(cliente);
+            }
+        });
+        informaçõesEDuvidasButton.addActionListener(new ActionListener() {//indo para a tela de informações
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new TelaInformacoesDuvidas(cliente);
+            }
+        });
+        extratoButton.addActionListener(new ActionListener() {// indo para a tela de extrato
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new TelaExtrato(cliente);
+            }
+        });
     }
 
     public static void main(String[] args){
