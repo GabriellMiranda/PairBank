@@ -19,6 +19,7 @@ public class Pessoa{
     public String getDataNascimento(){
         return this.dataNascimento.toString();
     }
+    public String getDataNascimentoModelBrasil(){return this.dataNascimento.getDataModelBrasil();}
     public String getCpf(){
         return this.cpf;
     }

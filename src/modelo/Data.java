@@ -10,7 +10,19 @@ public class Data{
         this.mes = mes;
         this.ano = ano;
     }
+    public String getDataModelBrasil(){
+        String diaStr,mesStr;
+        if(dia <10)
+            diaStr = "0" + Integer.toString(dia);
+        else
+            diaStr = Integer.toString(dia);
+        if(mes <10)
+            mesStr = "0" + Integer.toString(mes);
+        else
+            mesStr = Integer.toString(mes);
 
+        return diaStr+"/"+mesStr+"/"+Integer.toString(ano);
+    }
     public int getAnoFromString(String Data){
         String[] data = Data.split("-");
         return Integer.parseInt(data[0]);

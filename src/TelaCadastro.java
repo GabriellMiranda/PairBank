@@ -47,7 +47,7 @@ public class TelaCadastro extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                TelaLogin voltar = new TelaLogin();
+                new TelaLogin();
             }
         });
         exibirSenhas.addActionListener(new ActionListener() {
