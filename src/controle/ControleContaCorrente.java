@@ -13,13 +13,13 @@ public class ControleContaCorrente {
     public ContaCorrente newContaCorrente(double valor){
         return new ContaCorrente(valor);
     }
-    public void Deposito(double valor, String cpf, ContaCorrente conta) {
+    public boolean Deposito(double valor, String cpf, ContaCorrente conta) {
         if(valor < 0){
-            System.err.println("Não se pode depositar valores negativos!!");
-            return;
+            return false;
         }
-        correnteDao.depositarBd(cpf, valor); // depositando no banco de dados
-        conta.setValor(correnteDao.valorCorrente(cpf)); // atualizando a variável conta com o valor que acaba de ser depositdo no banco de dados
+        conta.setValor(conta.getValor() + valor);
+//        correnteDao.depositarBd(cpf, valor); // depositando no banco de dados
+        return true;
     }
     public boolean Saque(double valor,ContaCorrente conta){
         if(conta.getValor() == 0 || conta.getValor() < valor || valor <= 0){

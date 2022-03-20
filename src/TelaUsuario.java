@@ -40,8 +40,7 @@ public class TelaUsuario extends JFrame{
         verSaldoButton.addActionListener(new ActionListener() {// ver o saldo
             @Override
             public void actionPerformed(ActionEvent e) {
-                //valorSaldo.setText(Double.toString('valordosaldo');//pegar o valor do saldo do usuário
-                //atualizar o valor do saldo
+                valorSaldo.setText(Double.toString(cliente.contaCorrente.getValor()));
             }
         });
         configuraçõesDaContaButton.addActionListener(new ActionListener() {// indo para a tela de configurações
@@ -93,6 +92,20 @@ public class TelaUsuario extends JFrame{
                 new TelaExtrato(cliente);
             }
         });
+        pixButton.addActionListener(new ActionListener() {// ir para a tela de realizar pix
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new TelaPix(cliente);
+            }
+        });
+        transferênciaButton.addActionListener(new ActionListener() {// ir para a tela de realizar transferencia
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new TelaTransferencia(cliente);
+            }
+        });
     }
 
     public static void main(String[] args){
@@ -100,6 +113,7 @@ public class TelaUsuario extends JFrame{
                 "corrente","Pedro","13816201679",18,12,200,
                 18,3,2022);
         cliente.setSalario(1999.54);
+        cliente.contaCorrente.setValor(1000);
         new TelaUsuario(cliente);
     }
 }

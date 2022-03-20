@@ -32,7 +32,13 @@ public class TelaEmprestimo extends JFrame{
         solicitarEmpréstimoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {// aqui vai ser depositado na conta do usuário o valor do empréstimo
-                //Depositar
+                if(cliente.getTipodeConta().equals("corrente")) {
+                    cliente.contaCorrente.setValor(cliente.contaCorrente.getValor() + cliente.getSalario() + cliente.getSalario() * 0.15);
+                }
+                else{
+                    cliente.contaPoupanca.setValor(cliente.contaPoupanca.getValor() + cliente.getSalario() + cliente.getSalario() * 0.15);
+                }
+                //Depositar o valor no banco de dados
                 mensagem.alerta("Foi depositado em sua conta o valor do empréstimo!");
             }
         });

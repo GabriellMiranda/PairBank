@@ -5,6 +5,7 @@ public class Cliente extends Pessoa{
     private String Agencia, conta;
     private Data dataCriacaodaConta;
     public ContaCorrente contaCorrente;
+    public ContaPoupanca contaPoupanca;
     private tipoConta TipoDeConta;
 
 
@@ -39,6 +40,7 @@ public class Cliente extends Pessoa{
         this.conta = conta;
         this.senha = senha;
         this.contaCorrente = new ContaCorrente(0);
+        this.contaPoupanca = new ContaPoupanca(0);
     }
     public String getAgencia(){
         return Agencia;
@@ -56,7 +58,9 @@ public class Cliente extends Pessoa{
         return senha;
     }
 
-
+    public void setNewDataNascimento(int dia,int mes,int ano){super.setDataNascimento(dia,mes,ano);}
+    public void setNomeUsuario(String nome){super.setNome(nome);}
+    public void setSenha(String senha){this.senha = senha;}
     public void setAgencia(String agencia) {
         this.Agencia = agencia;
     }

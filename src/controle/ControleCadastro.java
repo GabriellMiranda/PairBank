@@ -13,7 +13,9 @@ public class ControleCadastro {
         mensagem = new popUPmensagem();
     }
 
-
+    public boolean oValorEhMaiorQue0(String valor){
+        return Double.parseDouble(valor) > 0;
+    }
     public String makeStringVetorInString(String[] entrada){
         String stringSaida = new String("");
         for(String c:entrada){

@@ -23,6 +23,19 @@ public class Data{
 
         return diaStr+"/"+mesStr+"/"+Integer.toString(ano);
     }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
     public int getAnoFromString(String Data){
         String[] data = Data.split("-");
         return Integer.parseInt(data[0]);

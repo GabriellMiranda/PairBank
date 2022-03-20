@@ -12,7 +12,11 @@ public class Pessoa{
         this.cpf = cpf;
         this.dataNascimento = new Data(diaNascimento,mesNascimento,anoNascimento);
     }
-
+    public void setDataNascimento(int dia,int mes,int ano){
+        this.dataNascimento.setDia(dia);
+        this.dataNascimento.setMes(mes);
+        this.dataNascimento.setAno(ano);
+    }
     public String getNome(){
         return this.nome;
     }
@@ -31,7 +35,7 @@ public class Pessoa{
     public double getSalario() {
         return salario;
     }
-
+    public void setNome(String nome){this.nome = nome;}
     public int getDiaNascimento(){return this.dataNascimento.getDia();}
     public int getMesNascimento(){return this.dataNascimento.getMes();}
     public int getAnoNascimento(){return this.dataNascimento.getAno();}
