@@ -65,7 +65,6 @@ public class ContaCorrenteDao {
             stmt.setDouble(1, valor);
             stmt.setString(2, cpf);
             stmt.executeLargeUpdate(); // com essa função eu consigo pegar o valor que já estava no banco de dados e somar um valor nele
-            System.out.println("Deposito efetuado com sucesso!!");
             int idAux = extratoDao.inserirExtrato("Deposito", valor);
             extratoClienteDao.inserirExtrato(idAux, cpf);
             if(conn != null){
@@ -141,7 +140,6 @@ public class ContaCorrenteDao {
            }
             String sql = "UPDATE contaCorrente" +
                     " SET valorCorrente = valorCorrente + ? where CPFC = ?;";
-            System.out.println("vai funcionar");
             PreparedStatement stmt = conexao.getConnection().prepareStatement(sql);
             stmt.setDouble(1, valor);
             stmt.setString(2, cpfDestinatario);

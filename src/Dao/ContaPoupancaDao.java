@@ -62,7 +62,6 @@ public class ContaPoupancaDao {
             stmt.setDouble(1, valor);
             stmt.setString(2, cpf);
             stmt.executeLargeUpdate(); // com essa função eu consigo pegar o valor que já estava no banco de dados e somar um valor nele
-            System.out.println("Deposito efetuado com sucesso!!");
             if(conn != null){
                 conn.close();
                 stmt.close();
